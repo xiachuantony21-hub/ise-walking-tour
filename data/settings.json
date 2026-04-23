@@ -1,0 +1,29 @@
+{
+  "tourName": "Ise Sacred Walk",
+  "maxParticipants": 12,
+  "sessions": {
+    "morning": {
+      "active": true,
+      "startTime": "10:00",
+      "endTime": "13:00"
+    },
+    "afternoon": {
+      "active": true,
+      "startTime": "15:00",
+      "endTime": "18:00"
+    }
+  },
+  "pricing": {
+    "private": {
+      "basePrice": 20000,
+      "basePersons": 2,
+      "additionalPersonPrice": 5000
+    },
+    "group": {
+      "pricePerPerson": 5000,
+      "minParticipants": 4
+    }
+  },
+  "blockedDates": [],
+  "announcement": ""
+}
