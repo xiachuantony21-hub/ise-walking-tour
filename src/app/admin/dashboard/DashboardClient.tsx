@@ -30,6 +30,83 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
   );
 }
 
+function ImageField({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+
+  const upload = async (file: File) => {
+    setUploading(true); setError("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const j = await res.json();
+      if (!res.ok) throw new Error(j.error || "Upload failed");
+      onChange(j.url);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex gap-2 items-start">
+        <div className="flex-1 space-y-2">
+          <input
+            className={inputCls}
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            placeholder="/photos/example.jpg or https://…"
+          />
+          <label
+            className={`flex items-center justify-center gap-2 px-3 py-2 border-2 border-dashed rounded-lg text-xs cursor-pointer transition-colors ${uploading ? "border-stone-200 text-stone-300" : "border-stone-300 text-stone-500 hover:border-stone-500 hover:text-stone-700"}`}
+            onDragOver={e => { e.preventDefault(); e.stopPropagation(); }}
+            onDrop={e => {
+              e.preventDefault(); e.stopPropagation();
+              const f = e.dataTransfer.files?.[0];
+              if (f) upload(f);
+            }}
+          >
+            {uploading ? "Uploading…" : "📁 Click or drag image to upload"}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              disabled={uploading}
+              onChange={e => { const f = e.target.files?.[0]; if (f) upload(f); e.currentTarget.value = ""; }}
+            />
+          </label>
+          {error && <p className="text-xs text-red-600">{error}</p>}
+        </div>
+        {value && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={value} alt="" className="w-20 h-20 object-cover rounded-lg border border-stone-200 flex-shrink-0" onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ImageList({ value, onChange }: { value: string[]; onChange: (v: string[]) => void }) {
+  return (
+    <div className="space-y-3">
+      {value.map((v, i) => (
+        <div key={i} className="flex gap-2 items-start">
+          <div className="flex-1">
+            <ImageField value={v} onChange={n => onChange(value.map((x, j) => j === i ? n : x))} />
+          </div>
+          <button onClick={() => onChange(value.filter((_, j) => j !== i))} className="px-3 py-2 text-stone-400 hover:text-red-600 text-lg">×</button>
+        </div>
+      ))}
+      <button onClick={() => onChange([...value, ""])} className="text-xs px-3 py-1.5 border border-dashed border-stone-300 rounded-lg text-stone-500 hover:border-stone-500 hover:text-stone-700">
+        + Add image
+      </button>
+    </div>
+  );
+}
+
 function Card({ title, kanji, children }: { title: string; kanji: string; children: React.ReactNode }) {
   return (
     <div className="bg-white rounded-2xl p-7 border border-stone-200 shadow-sm">
@@ -267,7 +344,7 @@ export default function AdminDashboardClient() {
         {tab === "content" && (
           <div className="space-y-6 pb-24">
             <p className="text-xs text-stone-500 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">
-              💡 Image fields accept either a local path like <code className="bg-white px-1.5 py-0.5 rounded">/photos/your-image.jpg</code> (put files in <code className="bg-white px-1.5 py-0.5 rounded">public/photos/</code>) or a full URL. Text can use <code className="bg-white px-1.5 py-0.5 rounded">&lt;em&gt;word&lt;/em&gt;</code> or <code className="bg-white px-1.5 py-0.5 rounded">&lt;br/&gt;</code>.
+              💡 Drag &amp; drop any image onto the upload box (or click to choose from your device). You can also paste a full URL. Max 10 MB per image. Text fields support <code className="bg-white px-1.5 py-0.5 rounded">&lt;em&gt;word&lt;/em&gt;</code> and <code className="bg-white px-1.5 py-0.5 rounded">&lt;br/&gt;</code>.
             </p>
 
             {/* Hero */}
@@ -288,17 +365,22 @@ export default function AdminDashboardClient() {
                 <div className="text-xs font-medium text-stone-600 mb-2">Slides (background rotation)</div>
                 <div className="space-y-3">
                   {settings.hero.slides.map((sl, i) => (
-                    <div key={i} className="border border-stone-200 rounded-xl p-4 grid sm:grid-cols-[1fr_100px_1fr_auto] gap-3 items-end">
-                      <Field label="Image path/URL">
-                        <input className={inputCls} value={sl.imageUrl} onChange={e => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.map((x,j) => j===i ? { ...x, imageUrl: e.target.value } : x) } }))} />
+                    <div key={i} className="border border-stone-200 rounded-xl p-4">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Slide {i+1}</span>
+                        <button onClick={() => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.filter((_, j) => j !== i) } }))} className="text-xs text-stone-400 hover:text-red-600">Remove</button>
+                      </div>
+                      <Field label="Image">
+                        <ImageField value={sl.imageUrl} onChange={v => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.map((x,j) => j===i ? { ...x, imageUrl: v } : x) } }))} />
                       </Field>
-                      <Field label="Kanji">
-                        <input className={inputCls} value={sl.kanji} onChange={e => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.map((x,j) => j===i ? { ...x, kanji: e.target.value } : x) } }))} />
-                      </Field>
-                      <Field label="Caption">
-                        <input className={inputCls} value={sl.caption} onChange={e => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.map((x,j) => j===i ? { ...x, caption: e.target.value } : x) } }))} />
-                      </Field>
-                      <button onClick={() => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.filter((_, j) => j !== i) } }))} className="px-3 py-2 text-stone-400 hover:text-red-600 text-lg">×</button>
+                      <div className="grid sm:grid-cols-2 gap-3 mt-3">
+                        <Field label="Kanji">
+                          <input className={inputCls} value={sl.kanji} onChange={e => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.map((x,j) => j===i ? { ...x, kanji: e.target.value } : x) } }))} />
+                        </Field>
+                        <Field label="Caption">
+                          <input className={inputCls} value={sl.caption} onChange={e => patch(s => ({ ...s, hero: { ...s.hero, slides: s.hero.slides.map((x,j) => j===i ? { ...x, caption: e.target.value } : x) } }))} />
+                        </Field>
+                      </div>
                     </div>
                   ))}
                   <button onClick={() => patch(s => ({ ...s, hero: { ...s.hero, slides: [...s.hero.slides, { imageUrl: "", kanji: "", caption: "" } as HeroSlide] } }))} className="text-xs px-3 py-1.5 border border-dashed border-stone-300 rounded-lg text-stone-500 hover:border-stone-500 hover:text-stone-700">
@@ -320,7 +402,7 @@ export default function AdminDashboardClient() {
               </Field>
               <div className="mt-4">
                 <Field label="Collage images (exactly 4 for best layout)">
-                  <StringList value={settings.story.images} onChange={v => patch(s => ({ ...s, story: { ...s.story, images: v } }))} placeholder="/photos/…" />
+                  <ImageList value={settings.story.images} onChange={v => patch(s => ({ ...s, story: { ...s.story, images: v } }))} />
                 </Field>
               </div>
             </Card>
@@ -362,7 +444,7 @@ export default function AdminDashboardClient() {
                     </div>
                     <Field label="Body"><textarea className={inputCls} rows={3} value={ch.body} onChange={e => patch(s => ({ ...s, chapters: s.chapters.map((x,j) => j===i ? { ...x, body: e.target.value } : x) }))} /></Field>
                     <div className="mt-3">
-                      <Field label="Image path/URL"><input className={inputCls} value={ch.imageUrl} onChange={e => patch(s => ({ ...s, chapters: s.chapters.map((x,j) => j===i ? { ...x, imageUrl: e.target.value } : x) }))} /></Field>
+                      <Field label="Image"><ImageField value={ch.imageUrl} onChange={v => patch(s => ({ ...s, chapters: s.chapters.map((x,j) => j===i ? { ...x, imageUrl: v } : x) }))} /></Field>
                     </div>
                   </div>
                 ))}
@@ -392,7 +474,7 @@ export default function AdminDashboardClient() {
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-4 mt-4">
-                <Field label="Food image path/URL"><input className={inputCls} value={settings.included.foodImage} onChange={e => patch(s => ({ ...s, included: { ...s.included, foodImage: e.target.value } }))} /></Field>
+                <Field label="Food image"><ImageField value={settings.included.foodImage} onChange={v => patch(s => ({ ...s, included: { ...s.included, foodImage: v } }))} /></Field>
                 <Field label="Food caption"><input className={inputCls} value={settings.included.foodCaption} onChange={e => patch(s => ({ ...s, included: { ...s.included, foodCaption: e.target.value } }))} /></Field>
               </div>
             </Card>
@@ -405,7 +487,7 @@ export default function AdminDashboardClient() {
                 <Field label="Heading"><input className={inputCls} value={settings.pricingSection.heading} onChange={e => patch(s => ({ ...s, pricingSection: { ...s.pricingSection, heading: e.target.value } }))} /></Field>
               </div>
               <Field label="Backdrop image">
-                <input className={inputCls} value={settings.pricingSection.backdropImage} onChange={e => patch(s => ({ ...s, pricingSection: { ...s.pricingSection, backdropImage: e.target.value } }))} />
+                <ImageField value={settings.pricingSection.backdropImage} onChange={v => patch(s => ({ ...s, pricingSection: { ...s.pricingSection, backdropImage: v } }))} />
               </Field>
               <div className="grid sm:grid-cols-2 gap-6 mt-4">
                 <div className="space-y-3">
@@ -440,8 +522,8 @@ export default function AdminDashboardClient() {
                     </div>
                     <Field label="Review text"><textarea className={inputCls} rows={3} value={r.body} onChange={e => patch(s => ({ ...s, reviews: { ...s.reviews, items: s.reviews.items.map((x,j) => j===i ? { ...x, body: e.target.value } : x) } }))} /></Field>
                     <div className="mt-3">
-                      <Field label="Photo URLs (optional)">
-                        <StringList value={r.photos} onChange={v => patch(s => ({ ...s, reviews: { ...s.reviews, items: s.reviews.items.map((x,j) => j===i ? { ...x, photos: v } : x) } }))} />
+                      <Field label="Photos (optional)">
+                        <ImageList value={r.photos} onChange={v => patch(s => ({ ...s, reviews: { ...s.reviews, items: s.reviews.items.map((x,j) => j===i ? { ...x, photos: v } : x) } }))} />
                       </Field>
                     </div>
                   </div>
