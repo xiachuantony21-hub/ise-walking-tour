@@ -156,7 +156,10 @@ export default function AdminDashboardClient() {
       body: JSON.stringify(settings),
     });
     if (res.ok) { setSaved(true); setTimeout(() => setSaved(false), 3000); }
-    else { setSaveError("Failed to save settings."); }
+    else {
+      const j = await res.json().catch(() => ({}));
+      setSaveError(j.error ? `Failed: ${j.error}` : "Failed to save settings.");
+    }
   };
 
   const toggleBlockedDate = (date: string) => {

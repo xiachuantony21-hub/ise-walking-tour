@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { list, put } from "@vercel/blob";
 
 const DATA_DIR = path.join(process.cwd(), "data");
+const SETTINGS_BLOB_KEY = "settings.json";
+const useBlob = () => !!process.env.BLOB_READ_WRITE_TOKEN;
 
 /* ─────────────────────────────────────────────────────────────
  * Site content — ALL editable from /admin/dashboard
@@ -334,11 +337,24 @@ function deepMerge<T>(base: T, override: Partial<T>): T {
   return out as T;
 }
 
-export function getSettings(): Settings {
+export async function getSettings(): Promise<Settings> {
+  if (useBlob()) {
+    try {
+      const { blobs } = await list({ prefix: SETTINGS_BLOB_KEY, limit: 100 });
+      const match = blobs.find(b => b.pathname === SETTINGS_BLOB_KEY);
+      if (!match) return DEFAULT_SETTINGS;
+      const res = await fetch(match.url, { cache: "no-store" });
+      if (!res.ok) return DEFAULT_SETTINGS;
+      const parsed = await res.json();
+      return deepMerge(DEFAULT_SETTINGS, parsed);
+    } catch {
+      return DEFAULT_SETTINGS;
+    }
+  }
   try {
     const file = path.join(DATA_DIR, "settings.json");
     if (!fs.existsSync(file)) {
-      saveSettings(DEFAULT_SETTINGS);
+      await saveSettings(DEFAULT_SETTINGS);
       return DEFAULT_SETTINGS;
     }
     const parsed = JSON.parse(fs.readFileSync(file, "utf-8"));
@@ -348,12 +364,46 @@ export function getSettings(): Settings {
   }
 }
 
-export function saveSettings(s: Settings): void {
+export async function saveSettings(s: Settings): Promise<void> {
+  if (useBlob()) {
+    await put(SETTINGS_BLOB_KEY, JSON.stringify(s, null, 2), {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json",
+    });
+    return;
+  }
   ensureDir();
   fs.writeFileSync(path.join(DATA_DIR, "settings.json"), JSON.stringify(s, null, 2));
 }
 
-export function getBookings(): Booking[] {
+const BOOKINGS_BLOB_KEY = "bookings.json";
+
+async function readBookingsFromBlob(): Promise<Booking[]> {
+  try {
+    const { blobs } = await list({ prefix: BOOKINGS_BLOB_KEY, limit: 100 });
+    const match = blobs.find(b => b.pathname === BOOKINGS_BLOB_KEY);
+    if (!match) return [];
+    const res = await fetch(match.url, { cache: "no-store" });
+    if (!res.ok) return [];
+    return (await res.json()).bookings ?? [];
+  } catch {
+    return [];
+  }
+}
+
+async function writeBookingsToBlob(list: Booking[]): Promise<void> {
+  await put(BOOKINGS_BLOB_KEY, JSON.stringify({ bookings: list }, null, 2), {
+    access: "public",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: "application/json",
+  });
+}
+
+export async function getBookings(): Promise<Booking[]> {
+  if (useBlob()) return readBookingsFromBlob();
   try {
     const file = path.join(DATA_DIR, "bookings.json");
     if (!fs.existsSync(file)) return [];
@@ -363,18 +413,20 @@ export function getBookings(): Booking[] {
   }
 }
 
-export function addBooking(booking: Booking): void {
+export async function addBooking(booking: Booking): Promise<void> {
+  const current = await getBookings();
+  const next = [...current, booking];
+  if (useBlob()) { await writeBookingsToBlob(next); return; }
   ensureDir();
-  const file = path.join(DATA_DIR, "bookings.json");
-  const list = getBookings();
-  list.push(booking);
-  fs.writeFileSync(file, JSON.stringify({ bookings: list }, null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "bookings.json"), JSON.stringify({ bookings: next }, null, 2));
 }
 
-export function updateBookingStatus(stripeSessionId: string, status: "paid" | "cancelled"): void {
-  const file = path.join(DATA_DIR, "bookings.json");
-  const list = getBookings().map((b) =>
+export async function updateBookingStatus(stripeSessionId: string, status: "paid" | "cancelled"): Promise<void> {
+  const current = await getBookings();
+  const next = current.map((b) =>
     b.stripeSessionId === stripeSessionId ? { ...b, status } : b
   );
-  fs.writeFileSync(file, JSON.stringify({ bookings: list }, null, 2));
+  if (useBlob()) { await writeBookingsToBlob(next); return; }
+  ensureDir();
+  fs.writeFileSync(path.join(DATA_DIR, "bookings.json"), JSON.stringify({ bookings: next }, null, 2));
 }

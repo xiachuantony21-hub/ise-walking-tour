@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const settings = getSettings();
+    const settings = await getSettings();
 
     /* ── price calculation ── */
     let totalPrice = 0;
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     });
 
     /* ── store pending booking ── */
-    addBooking({
+    await addBooking({
       id:          bookingId,
       createdAt:   new Date().toISOString(),
       tourType,

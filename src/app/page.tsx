@@ -10,8 +10,8 @@ import BookingForm    from "@/components/BookingForm";
 import FAQ            from "@/components/FAQ";
 import Footer         from "@/components/Footer";
 
-export default function Home() {
-  const settings = getSettings();
+export default async function Home() {
+  const settings = await getSettings();
 
   return (
     <main>

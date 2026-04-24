@@ -8,5 +8,5 @@ export async function GET() {
   const token = store.get("admin_token")?.value;
   if (!token || !(await verifyAdminToken(token)))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return NextResponse.json(getBookings());
+  return NextResponse.json(await getBookings());
 }

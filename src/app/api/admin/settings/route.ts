@@ -12,14 +12,20 @@ async function isAuthed() {
 export async function GET() {
   if (!(await isAuthed()))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return NextResponse.json(getSettings());
+  return NextResponse.json(await getSettings());
 }
 
 export async function PUT(req: NextRequest) {
   if (!(await isAuthed()))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const body = await req.json();
-  saveSettings(body);
-  return NextResponse.json({ success: true });
+  try {
+    const body = await req.json();
+    await saveSettings(body);
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Save failed";
+    console.error("[admin/settings PUT]", err);
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
 }
