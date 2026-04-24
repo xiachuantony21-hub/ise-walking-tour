@@ -44,7 +44,7 @@ export default function Navbar() {
           {links.map((l) => (
             <li key={l.href}>
               <a href={l.href} className="group flex items-baseline gap-2 hover:opacity-70 transition-opacity">
-                <span className="font-jp text-sm opacity-50 group-hover:opacity-100 transition-opacity" style={{ color: scrolled ? "var(--torii)" : "#e8b86a" }}>
+                <span className="font-jp text-sm opacity-50 group-hover:opacity-100 transition-opacity" style={{ color: scrolled ? "var(--accent)" : "#e8b86a" }}>
                   {l.kanji}
                 </span>
                 {l.label}
@@ -56,7 +56,7 @@ export default function Navbar() {
               href="#booking"
               className={`px-6 py-2.5 text-xs tracking-[0.25em] uppercase font-medium transition-all ${
                 scrolled
-                  ? "bg-[var(--torii)] text-white hover:opacity-90"
+                  ? "bg-[var(--accent)] text-white hover:opacity-90"
                   : "bg-white/10 text-white border border-white/40 hover:bg-white/20 backdrop-blur-sm"
               }`}
               style={{ borderRadius: 2 }}
@@ -81,14 +81,14 @@ export default function Navbar() {
         <div className="md:hidden bg-[var(--cream)] border-t px-6 py-6 space-y-5" style={{ borderColor: "var(--cream-deep)" }}>
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} className="flex items-baseline gap-3 text-[var(--ink)]">
-              <span className="font-jp text-base" style={{ color: "var(--torii)" }}>{l.kanji}</span>
+              <span className="font-jp text-base" style={{ color: "var(--accent)" }}>{l.kanji}</span>
               <span className="text-xs tracking-[0.3em] uppercase">{l.label}</span>
             </a>
           ))}
           <a
             href="#booking"
             onClick={() => setMenuOpen(false)}
-            className="block w-full text-center py-3 bg-[var(--torii)] text-white text-xs tracking-[0.3em] uppercase"
+            className="block w-full text-center py-3 bg-[var(--accent)] text-white text-xs tracking-[0.3em] uppercase"
             style={{ borderRadius: 2 }}
           >
             Reserve

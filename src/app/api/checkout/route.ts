@@ -25,8 +25,10 @@ export async function POST(req: NextRequest) {
       totalPrice = settings.pricing.group.pricePerPerson * participants;
     }
 
-    const sessInfo  = session === "morning" ? settings.sessions.morning : settings.sessions.afternoon;
-    const sessLabel = `${sessInfo.startTime}–${sessInfo.endTime}`;
+    // `session` now holds the actual start time e.g. "12:00" (group) or a chosen private start.
+    const sessLabel = tourType === "group"
+      ? `${settings.sessions.groupDeparture.startTime}–${settings.sessions.groupDeparture.endTime}`
+      : `starts ${session} · ~${settings.sessions.privateWindow.durationHours}h`;
 
     const bookingId = uuidv4();
     const baseUrl   = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";

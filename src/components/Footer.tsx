@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Settings } from "@/lib/data";
 
-export default function Footer() {
+export default function Footer({ contact }: { contact: Settings["contact"] }) {
   return (
     <footer className="relative text-stone-300 overflow-hidden" style={{ background: "#0d1410" }}>
       {/* Decorative kanji wash */}
@@ -48,12 +49,12 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li>
                 <div className="text-white/50 text-[10px] uppercase tracking-[0.3em] mb-1">Meeting Point</div>
-                <div className="text-white/80">Real Japan by YamaTrips<br />Geku Sando, Ise-shi, Mie</div>
+                <div className="text-white/80">{contact.meetingPoint}<br />{contact.meetingPointAddress}</div>
               </li>
               <li>
                 <div className="text-white/50 text-[10px] uppercase tracking-[0.3em] mb-1">Email</div>
-                <a href="mailto:contact@yamatrips.com" className="text-white/80 hover:text-white transition-colors">
-                  contact@yamatrips.com
+                <a href={`mailto:${contact.email}`} className="text-white/80 hover:text-white transition-colors">
+                  {contact.email}
                 </a>
               </li>
             </ul>

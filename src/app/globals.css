@@ -2,83 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens (warm cream · ink · cedar) ─────────────── */
+/* ── Design tokens (muted cream · ink · cedar · subtle sumac) ─── */
 :root {
-  --torii:        #b1363b;
-  --torii-dark:   #8a2429;
-  --ink:          #231815;
-  --ink-soft:     #4a3f39;
+  --accent:       #8a6d4a;   /* warm sumi brown for accents (replaces bright red) */
+  --accent-soft:  #a08865;
+  --sumac:        #9a3e3a;   /* restrained red, used sparingly */
+  --ink:          #1f1b18;
+  --ink-soft:     #52483f;
   --cedar:        #2d3a2e;
   --cedar-deep:   #1a241c;
-  --cream:        #f6efe3;
-  --cream-mid:    #ede3d0;
-  --cream-deep:   #e1d3b8;
+  --cream:        #f8f3ea;
+  --cream-mid:    #efe6d4;
+  --cream-deep:   #ddd0b4;
   --gold:         #b8975a;
 }
 
-/* ── Base ─────────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--cream);
   color: var(--ink);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-lora), Georgia, serif;
   -webkit-font-smoothing: antialiased;
+  font-weight: 400;
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: var(--font-lora), Georgia, serif;
   color: var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
+  font-weight: 500;
 }
 
 .font-jp {
   font-family: var(--font-shippori), "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
-/* ── Section label ────────────────────────────────────────── */
+.font-ui {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* ── Section header ornaments ───────────────────────────────── */
 .section-label {
-  @apply text-[11px] font-semibold tracking-[0.32em] uppercase mb-4;
-  color: var(--torii);
+  @apply text-[11px] font-medium tracking-[0.32em] uppercase mb-4;
+  color: var(--accent);
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .section-kanji {
-  font-family: var(--font-shippori), "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
-  color: var(--torii);
+  font-family: var(--font-shippori), serif;
+  color: var(--accent);
   font-weight: 400;
 }
 
-/* ── Dividers ─────────────────────────────────────────────── */
 .torii-line {
-  @apply block w-12 h-px mx-auto mt-4;
-  background: var(--torii);
+  @apply block w-12 h-px mx-auto mt-5;
+  background: var(--accent);
 }
 
-.divider-vertical {
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 8px;
-}
-.divider-vertical::before,
-.divider-vertical::after {
-  content: ""; width: 1px; height: 32px; background: var(--cream-deep);
-}
-
-/* ── Paper / washi texture on cream surfaces ──────────────── */
+/* ── Paper texture (softer) ─────────────────────────────────── */
 .paper {
   background-color: var(--cream);
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(177,54,59,0.04) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(45,58,46,0.05) 0%, transparent 45%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    radial-gradient(circle at 20% 30%, rgba(138,109,74,0.04) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(45,58,46,0.04) 0%, transparent 45%);
 }
 
-/* ── Animations ───────────────────────────────────────────── */
+/* ── Animations ─────────────────────────────────────────────── */
 @keyframes fadeUp     { from { opacity:0; transform: translateY(24px);} to {opacity:1; transform: translateY(0);} }
 @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
 @keyframes kenBurns   { from { transform: scale(1.05) translate(0,0); } to { transform: scale(1.18) translate(-1.5%, 1.5%); } }
-@keyframes slowPan    { from { transform: scale(1.1) translateX(0); } to { transform: scale(1.15) translateX(-2%); } }
+@keyframes slowPan    { from { transform: scale(1.08) translateX(0); } to { transform: scale(1.14) translateX(-2%); } }
 @keyframes scrollPulse{ 0%,100%{transform:translateY(0);opacity:.6;} 50%{transform:translateY(8px);opacity:1;} }
-@keyframes pulseSlow  { 0%,100%{opacity:.35;} 50%{opacity:.75;} }
 @keyframes driftUp    { from { opacity:0; transform: translateY(40px);} to {opacity:1; transform: translateY(0);} }
 
 .animate-fade-up   { animation: fadeUp 0.9s ease-out forwards; opacity: 0; }
@@ -91,51 +86,56 @@ h1, h2, h3, h4 {
 .animate-delay-300 { animation-delay: 0.3s; }
 .animate-delay-400 { animation-delay: 0.4s; }
 .animate-delay-600 { animation-delay: 0.6s; }
-.animate-delay-900 { animation-delay: 0.9s; }
 .animate-scroll    { animation: scrollPulse 2.4s ease-in-out infinite; }
-.animate-pulse-slow{ animation: pulseSlow 4s ease-in-out infinite; }
 
-/* Reveal on scroll */
-.reveal                 { opacity: 0; transform: translateY(28px); transition: opacity 1s ease, transform 1s cubic-bezier(0.22,0.61,0.36,1); }
-.reveal.is-visible      { opacity: 1; transform: translateY(0); }
-.reveal-delay-200.is-visible { transition-delay: 0.15s; }
-.reveal-delay-400.is-visible { transition-delay: 0.3s;  }
-
-/* ── Forms ────────────────────────────────────────────────── */
+/* ── Forms ──────────────────────────────────────────────────── */
 .field {
   @apply w-full px-4 py-3 border rounded-sm bg-white
-         focus:outline-none focus:ring-1 focus:ring-torii-700 focus:border-torii-700
-         transition-all text-stone-800 placeholder:text-stone-400;
+         focus:outline-none focus:ring-1 transition-all
+         text-stone-800 placeholder:text-stone-400;
   border-color: var(--cream-deep);
 }
+.field:focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 
-/* ── Buttons ──────────────────────────────────────────────── */
+/* ── Buttons ────────────────────────────────────────────────── */
 .btn-primary {
   @apply inline-flex items-center justify-center gap-2
-         px-9 py-4 text-sm tracking-[0.2em] uppercase font-medium text-white
+         px-9 py-4 text-[11px] tracking-[0.28em] uppercase font-medium text-white
          transition-all active:scale-[0.98];
-  background: var(--torii);
+  background: var(--ink);
   border-radius: 2px;
-  box-shadow: 0 8px 30px -8px rgba(177,54,59,0.5);
+  font-family: var(--font-inter), sans-serif;
 }
-.btn-primary:hover { background: var(--torii-dark); box-shadow: 0 12px 36px -8px rgba(177,54,59,0.65); }
+.btn-primary:hover { background: #000; }
+
+.btn-accent {
+  @apply inline-flex items-center justify-center gap-2
+         px-9 py-4 text-[11px] tracking-[0.28em] uppercase font-medium text-white
+         transition-all active:scale-[0.98];
+  background: var(--accent);
+  border-radius: 2px;
+  font-family: var(--font-inter), sans-serif;
+}
+.btn-accent:hover { background: #6e563a; }
 
 .btn-ghost {
   @apply inline-flex items-center justify-center gap-2
-         px-9 py-4 text-sm tracking-[0.2em] uppercase font-medium text-white
+         px-9 py-4 text-[11px] tracking-[0.28em] uppercase font-medium text-white
          transition-all active:scale-[0.98];
   border: 1px solid rgba(255,255,255,0.5);
   border-radius: 2px;
   backdrop-filter: blur(8px);
+  font-family: var(--font-inter), sans-serif;
 }
 .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.9); }
 
 .btn-outline-ink {
   @apply inline-flex items-center justify-center gap-2
-         px-9 py-4 text-sm tracking-[0.2em] uppercase font-medium
+         px-9 py-4 text-[11px] tracking-[0.28em] uppercase font-medium
          transition-all active:scale-[0.98];
   color: var(--ink);
   border: 1px solid var(--ink);
   border-radius: 2px;
+  font-family: var(--font-inter), sans-serif;
 }
 .btn-outline-ink:hover { background: var(--ink); color: var(--cream); }

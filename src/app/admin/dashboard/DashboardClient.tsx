@@ -292,44 +292,75 @@ export default function AdminDashboardClient() {
                 <span>🕐</span> Sessions
               </h3>
               <div className="grid sm:grid-cols-2 gap-6">
-                {(["morning","afternoon"] as const).map(sess => (
-                  <div key={sess} className="border border-stone-200 rounded-xl p-5">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-medium text-stone-800 capitalize">
-                        {sess === "morning" ? "🌅" : "🌇"} {sess}
-                      </span>
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={settings.sessions[sess].active}
-                          onChange={e => setSettings({
-                            ...settings,
-                            sessions: { ...settings.sessions, [sess]: { ...settings.sessions[sess], active: e.target.checked } }
-                          })}
-                          className="sr-only peer"
-                        />
-                        <div className="w-10 h-6 bg-stone-200 peer-focus:ring-2 peer-focus:ring-torii-700 rounded-full peer peer-checked:bg-torii-700 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-4" />
-                      </label>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      {(["startTime","endTime"] as const).map(t => (
-                        <label key={t} className="block">
-                          <span className="text-xs text-stone-500 capitalize">{t.replace("T"," t")}</span>
-                          <input
-                            type="time"
-                            value={settings.sessions[sess][t]}
-                            onChange={e => setSettings({
-                              ...settings,
-                              sessions: { ...settings.sessions, [sess]: { ...settings.sessions[sess], [t]: e.target.value } }
-                            })}
-                            className="mt-1 w-full px-3 py-2 border border-stone-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-torii-700"
-                          />
-                        </label>
-                      ))}
-                    </div>
+                {/* Group departure */}
+                <div className="border border-stone-200 rounded-xl p-5">
+                  <div className="font-medium text-stone-800 mb-4">Group Departure</div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <label className="block">
+                      <span className="text-xs text-stone-500">Start</span>
+                      <input
+                        type="time"
+                        value={settings.sessions.groupDeparture.startTime}
+                        onChange={e => setSettings({ ...settings, sessions: { ...settings.sessions, groupDeparture: { ...settings.sessions.groupDeparture, startTime: e.target.value } } })}
+                        className="mt-1 w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-xs text-stone-500">End</span>
+                      <input
+                        type="time"
+                        value={settings.sessions.groupDeparture.endTime}
+                        onChange={e => setSettings({ ...settings, sessions: { ...settings.sessions, groupDeparture: { ...settings.sessions.groupDeparture, endTime: e.target.value } } })}
+                        className="mt-1 w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
+                      />
+                    </label>
                   </div>
-                ))}
+                </div>
+
+                {/* Private window */}
+                <div className="border border-stone-200 rounded-xl p-5">
+                  <div className="font-medium text-stone-800 mb-4">Private Start Window</div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <label className="block">
+                      <span className="text-xs text-stone-500">Earliest</span>
+                      <input
+                        type="time"
+                        value={settings.sessions.privateWindow.earliestStart}
+                        onChange={e => setSettings({ ...settings, sessions: { ...settings.sessions, privateWindow: { ...settings.sessions.privateWindow, earliestStart: e.target.value } } })}
+                        className="mt-1 w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-xs text-stone-500">Latest</span>
+                      <input
+                        type="time"
+                        value={settings.sessions.privateWindow.latestStart}
+                        onChange={e => setSettings({ ...settings, sessions: { ...settings.sessions, privateWindow: { ...settings.sessions.privateWindow, latestStart: e.target.value } } })}
+                        className="mt-1 w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
+                      />
+                    </label>
+                  </div>
+                  <label className="block mt-3">
+                    <span className="text-xs text-stone-500">Duration (hours)</span>
+                    <input
+                      type="number" min={1} max={8}
+                      value={settings.sessions.privateWindow.durationHours}
+                      onChange={e => setSettings({ ...settings, sessions: { ...settings.sessions, privateWindow: { ...settings.sessions.privateWindow, durationHours: +e.target.value } } })}
+                      className="mt-1 w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
+                    />
+                  </label>
+                </div>
               </div>
+
+              <label className="block mt-4">
+                <span className="text-xs text-stone-500">Arrive early (minutes)</span>
+                <input
+                  type="number" min={0} max={60}
+                  value={settings.sessions.arriveEarlyMinutes}
+                  onChange={e => setSettings({ ...settings, sessions: { ...settings.sessions, arriveEarlyMinutes: +e.target.value } })}
+                  className="mt-1 w-32 px-3 py-2 border border-stone-300 rounded-lg text-sm"
+                />
+              </label>
             </div>
 
             {/* Blocked dates */}

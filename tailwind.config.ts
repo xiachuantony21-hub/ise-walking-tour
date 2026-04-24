@@ -10,31 +10,29 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
+        serif: ["var(--font-lora)", "Georgia", "serif"],
+        jp: ["var(--font-shippori)", "serif"],
       },
       colors: {
-        torii: {
-          50:  "#fff1f1",
-          100: "#ffe0e0",
-          200: "#ffc5c5",
-          300: "#ff9d9d",
-          400: "#ff6363",
-          500: "#f83232",
-          600: "#e51414",
-          700: "#c10b0b",
-          800: "#9f0d0d",
-          900: "#841212",
+        accent: {
+          50:  "#faf6ef",
+          100: "#efe4d1",
+          200: "#d9c5a4",
+          300: "#c1a57c",
+          400: "#a08865",
+          500: "#8a6d4a",
+          600: "#6e563a",
+          700: "#5a4530",
+          800: "#443427",
+          900: "#2e231a",
         },
-        yama: {
-          teal:  "#1E6FA3",
-          light: "#56B0D0",
-          sage:  "#6DB46D",
-          dark:  "#154D73",
+        sumac: {
+          500: "#9a3e3a",
+          600: "#7d2f2c",
         },
-        forest: {
-          deep: "#0F1A0C",
-          mid:  "#1A2E1C",
-          warm: "#0E1B0B",
+        cedar: {
+          deep: "#1a241c",
+          mid:  "#2d3a2e",
         },
       },
       animation: {

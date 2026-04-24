@@ -2,46 +2,44 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { HERO_SLIDES } from "@/lib/images";
+import type { Settings } from "@/lib/data";
 
-export default function HeroSection() {
+export default function HeroSection({ hero }: { hero: Settings["hero"] }) {
+  const slides = hero.slides.length ? hero.slides : [{ imageUrl: "", kanji: "伊勢", caption: "" }];
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setActive((i) => (i + 1) % HERO_SLIDES.length);
-    }, 5500);
+    const id = setInterval(() => setActive((i) => (i + 1) % slides.length), 5500);
     return () => clearInterval(id);
-  }, []);
+  }, [slides.length]);
 
   return (
     <section className="relative h-screen min-h-[720px] flex items-end overflow-hidden bg-[#0b0a08]">
-      {/* Slideshow with cross-fade + Ken Burns */}
-      {HERO_SLIDES.map((slide, i) => (
+      {slides.map((slide, i) => (
         <div
-          key={slide.id}
+          key={i}
           className="absolute inset-0 transition-opacity duration-[2200ms] ease-out"
           style={{ opacity: i === active ? 1 : 0 }}
           aria-hidden={i !== active}
         >
-          <div className="absolute inset-0 animate-ken-burns">
-            <Image
-              src={slide.url}
-              alt={slide.caption}
-              fill
-              priority={i === 0}
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
+          {slide.imageUrl && (
+            <div className="absolute inset-0 animate-ken-burns">
+              <Image
+                src={slide.imageUrl}
+                alt={slide.caption || ""}
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          )}
         </div>
       ))}
 
-      {/* Gradient overlays for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a08]/90 via-[#0b0a08]/30 to-[#0b0a08]/60 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a08]/90 via-[#0b0a08]/25 to-[#0b0a08]/60 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a08]/70 via-transparent to-transparent pointer-events-none" />
 
-      {/* Vertical kanji label (right side) */}
       <div
         className="absolute top-[18%] right-6 md:right-14 text-white/90 pointer-events-none select-none font-jp"
         style={{
@@ -54,45 +52,38 @@ export default function HeroSection() {
         伊勢神宮 参道
       </div>
 
-      {/* Giant atmospheric kanji for current slide */}
       <div
         key={active}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-jp animate-fade-in"
         style={{
           fontSize: "clamp(180px, 26vw, 360px)",
-          color: "rgba(255,255,255,0.06)",
+          color: "rgba(255,255,255,0.05)",
           lineHeight: 1,
         }}
       >
-        {HERO_SLIDES[active].kanji}
+        {slides[active].kanji}
       </div>
 
-      {/* Top branding bar */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-12 py-6 text-white/80 text-[11px] tracking-[0.32em] uppercase">
+      <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-12 py-6 text-white/80 text-[11px] tracking-[0.32em] uppercase font-ui">
         <span>Real Japan by YamaTrips</span>
-        <span className="hidden md:block">Est. Ise · Mie</span>
+        <span className="hidden md:block">Ise · Mie</span>
       </div>
 
-      {/* Main content (lower-left, magazine-style) */}
       <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 pb-20 md:pb-28">
         <div className="max-w-3xl">
-          <p className="animate-drift text-[11px] tracking-[0.4em] uppercase text-white/70 mb-6">
+          <p className="animate-drift text-[11px] tracking-[0.4em] uppercase text-white/80 mb-6 font-ui">
             <span className="inline-block w-8 h-px bg-white/60 align-middle mr-3" />
-            A Sacred Walk in Ise
+            {hero.eyebrow}
           </p>
 
           <h1
             className="animate-drift animate-delay-200 font-serif text-white leading-[1.05] mb-8"
-            style={{ fontSize: "clamp(2.6rem, 6.8vw, 5.4rem)" }}
-          >
-            Where the gods<br />
-            <em className="not-italic" style={{ color: "#e8b86a" }}>still walk</em> at dawn.
-          </h1>
+            style={{ fontSize: "clamp(2.4rem, 6.4vw, 5rem)" }}
+            dangerouslySetInnerHTML={{ __html: hero.heading }}
+          />
 
           <p className="animate-drift animate-delay-400 text-white/85 text-lg md:text-xl leading-relaxed max-w-xl mb-10 font-light">
-            A three-hour pilgrimage through Japan&apos;s most revered shrines —
-            Gekū, Naikū, and the four-hundred-year-old streets of Oharaimachi.
-            Guided in English. Street eats along the way.
+            {hero.subheading}
           </p>
 
           <div className="animate-drift animate-delay-600 flex flex-col sm:flex-row items-start gap-4">
@@ -101,13 +92,12 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Slide indicators */}
         <div className="absolute bottom-10 right-6 md:right-12 flex items-center gap-3">
           <span className="text-white/70 text-xs tracking-[0.3em] font-mono">
-            {String(active + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+            {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
           </span>
           <div className="flex gap-2">
-            {HERO_SLIDES.map((_, i) => (
+            {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
@@ -123,8 +113,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 font-ui">
         <span className="text-[10px] tracking-[0.35em] uppercase">Scroll</span>
         <div className="animate-scroll w-px h-8 bg-gradient-to-b from-white/70 to-transparent" />
       </div>

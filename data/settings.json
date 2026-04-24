@@ -2,16 +2,18 @@
   "tourName": "Ise Sacred Walk",
   "maxParticipants": 12,
   "sessions": {
-    "morning": {
+    "groupDeparture": {
       "active": true,
-      "startTime": "10:00",
-      "endTime": "13:00"
+      "startTime": "12:00",
+      "endTime": "15:00"
     },
-    "afternoon": {
+    "privateWindow": {
       "active": true,
-      "startTime": "15:00",
-      "endTime": "18:00"
-    }
+      "earliestStart": "10:00",
+      "latestStart": "14:00",
+      "durationHours": 3
+    },
+    "arriveEarlyMinutes": 15
   },
   "pricing": {
     "private": {
@@ -25,5 +27,210 @@
     }
   },
   "blockedDates": [],
-  "announcement": ""
+  "announcement": "",
+  "hero": {
+    "eyebrow": "A Sacred Walk in Ise",
+    "heading": "Where the gods<br/>still <em>walk at dawn.</em>",
+    "subheading": "A three-hour pilgrimage through Japan's most revered shrines — Gekū, Naikū, and the four-hundred-year-old streets of Oharaimachi. Guided in English.",
+    "slides": [
+      {
+        "imageUrl": "/photos/24825820_m.jpeg",
+        "kanji": "鳥居",
+        "caption": "Pass beneath the torii"
+      },
+      {
+        "imageUrl": "/photos/2801930_m.jpeg",
+        "kanji": "森",
+        "caption": "The mossy cedar path"
+      },
+      {
+        "imageUrl": "/photos/IMG_3545.jpg",
+        "kanji": "店",
+        "caption": "Welcome at the shop"
+      },
+      {
+        "imageUrl": "/photos/26802378_m.jpeg",
+        "kanji": "食",
+        "caption": "Taste old Ise"
+      }
+    ]
+  },
+  "story": {
+    "kanji": "物語",
+    "eyebrow": "Our Story",
+    "heading": "A quiet pilgrimage,<br/>told in <em>English.</em>",
+    "paragraphs": [
+      "For over two thousand years, pilgrims have walked to Ise. Emperors, poets, merchants, farmers — all have come to stand before Amaterasu, the sun goddess, at the holiest shrine in Japan.",
+      "We walk the same path, at the same pace, for three quiet hours. No rush, no schedule besides the one the cedars keep."
+    ],
+    "images": [
+      "/photos/24825820_m.jpeg",
+      "/photos/2801930_m.jpeg",
+      "/photos/IMG_3545.jpg",
+      "/photos/22321235_m.jpeg"
+    ]
+  },
+  "stats": [
+    {
+      "kanji": "時",
+      "value": "3 Hours",
+      "label": "Guided walk"
+    },
+    {
+      "kanji": "人",
+      "value": "2 – 12",
+      "label": "Small group"
+    },
+    {
+      "kanji": "駅",
+      "value": "3 min walk",
+      "label": "From Iseshi Station"
+    },
+    {
+      "kanji": "社",
+      "value": "Two Shrines",
+      "label": "Gekū · Naikū"
+    }
+  ],
+  "chapters": [
+    {
+      "kanji": "店",
+      "romaji": "Mise",
+      "title": "Real Japan by YamaTrips",
+      "body": "We open with tea at our shop on Geku Sando. Arrive 15 minutes early to browse samue attire, Ise crafts, and local goods before the walk begins. Your guide will introduce the day's route over a warm welcome.",
+      "imageUrl": "/photos/IMG_3545.jpg"
+    },
+    {
+      "kanji": "外宮参道",
+      "romaji": "Gekū Sandō",
+      "title": "Gekū Sandō · The Approach",
+      "body": "We set out down one of Japan's most atmospheric pilgrim streets — stone lanterns, wooden shopfronts, and cedar shadows lead the way toward the Outer Shrine.",
+      "imageUrl": "/photos/2801930_m.jpeg"
+    },
+    {
+      "kanji": "外宮",
+      "romaji": "Gekū",
+      "title": "Gekū · The Outer Shrine",
+      "body": "We cross into the sacred ground of Toyouke Ōmikami — the deity of food, clothing, and shelter. Traditionally visited first before the Inner Shrine, following centuries of pilgrimage custom.",
+      "imageUrl": "/photos/22321235_m.jpeg"
+    },
+    {
+      "kanji": "内宮",
+      "romaji": "Naikū",
+      "title": "Naikū · The Inner Shrine",
+      "body": "A short bus ride to the most sacred shrine in all of Japan — dedicated to the sun goddess Amaterasu Ōmikami. Cross the Uji Bridge and feel the stillness of the Isuzu River.",
+      "imageUrl": "/photos/24825820_m.jpeg"
+    },
+    {
+      "kanji": "おはらい町",
+      "romaji": "Oharaimachi",
+      "title": "Oharaimachi · The Pilgrim's Street",
+      "body": "Edo-period storefronts line the walk back from Naikū. Here we share 食べ歩き — Matsusaka beef skewers, Ise udon, akafuku mochi, fresh oysters. Your guide recommends the best stands; purchases are on your own so you can pick what you love.",
+      "imageUrl": "/photos/26802378_m.jpeg"
+    }
+  ],
+  "included": {
+    "kanji": "巡礼",
+    "eyebrow": "The Pilgrim's Kit",
+    "heading": "What comes<br/>with the <em>walk.</em>",
+    "included": [
+      "Expert bilingual guide (English & Japanese)",
+      "Welcome tea at the YamaTrips shop on Geku Sando",
+      "Guided walk of Gekū — the Outer Shrine",
+      "Bus transfer from Gekū to Naikū",
+      "Guided exploration of Naikū — the Inner Shrine",
+      "Street food introductions in Oharaimachi",
+      "Best photo spots along the path"
+    ],
+    "notIncluded": [
+      "Shrine entry (always free)",
+      "Personal food & drink purchases",
+      "Return transport from Oharaimachi",
+      "Bus fare from Gekū to Naikū (~¥140 pp)"
+    ],
+    "foodImage": "/photos/26802378_m.jpeg",
+    "foodCaption": "Eat as the pilgrims did — Matsusaka skewers, Ise udon, akafuku mochi."
+  },
+  "pricingSection": {
+    "kanji": "料金",
+    "eyebrow": "The Offering",
+    "heading": "Choose your<br/><em>pilgrimage.</em>",
+    "backdropImage": "/photos/24825820_m.jpeg",
+    "privateDescription": "Your party only. Choose any start between 10:00 and 14:00.",
+    "privateBullets": [
+      "Your party only",
+      "Flexible start (10:00 – 14:00)",
+      "Up to 12 participants",
+      "Tailored pace and stops"
+    ],
+    "groupDescription": "A shared walk. Departs once daily at 12:00.",
+    "groupBullets": [
+      "Meet fellow travellers",
+      "Single daily departure — 12:00",
+      "Minimum 4 to run",
+      "Same guide, same full route"
+    ]
+  },
+  "reviews": {
+    "eyebrow": "Traveler Voices",
+    "heading": "Reviews from Travelers",
+    "items": [
+      {
+        "name": "Sarah M.",
+        "date": "April 2026",
+        "stars": 5,
+        "body": "Our guide made the shrines feel alive. We learned so much about the rituals and the history — and the street food in Oharaimachi was the perfect ending.",
+        "photos": []
+      },
+      {
+        "name": "Hiroshi T.",
+        "date": "March 2026",
+        "stars": 5,
+        "body": "Beautifully paced. Neither rushed nor slow. My wife and I walked quietly for three hours and felt we had seen the real Ise.",
+        "photos": []
+      },
+      {
+        "name": "Emma & James",
+        "date": "February 2026",
+        "stars": 5,
+        "body": "The private tour was worth every yen. We asked endless questions and our guide answered every one with patience and warmth.",
+        "photos": []
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "What language is the tour conducted in?",
+      "a": "The tour is fully conducted in English by an expert bilingual guide."
+    },
+    {
+      "q": "Where exactly is the meeting point?",
+      "a": "We meet at Real Japan by YamaTrips on Geku Sando — approximately 3 minutes on foot from Iseshi Station (JR/Kintetsu). Please arrive 15 minutes before your tour start time so you have time to browse the shop and settle in."
+    },
+    {
+      "q": "What should I wear and bring?",
+      "a": "Comfortable walking shoes are essential — the total walking distance is 3–4 km. Dress for the weather, bring a small bag for any purchases on Oharaimachi, and carry some cash for street food and the local bus (~¥140 per person)."
+    },
+    {
+      "q": "What happens if the group tour minimum isn't met?",
+      "a": "For group tours, we require a minimum of 4 participants to run the session. If the minimum hasn't been reached 48 hours before your tour, we will contact you with the option to upgrade to a private tour or receive a full refund."
+    },
+    {
+      "q": "What is your cancellation policy?",
+      "a": "Full refunds are available for cancellations made more than 48 hours before the tour start time. Cancellations within 48 hours are non-refundable."
+    },
+    {
+      "q": "Is the tour suitable for children?",
+      "a": "Yes — children are very welcome. The route is gentle walking on paved and gravel paths."
+    },
+    {
+      "q": "Can I book a tour for the same day?",
+      "a": "Same-day bookings are subject to availability. We recommend booking at least 24 hours in advance."
+    }
+  ],
+  "contact": {
+    "email": "contact@yamatrips.com",
+    "meetingPoint": "Real Japan by YamaTrips",
+    "meetingPointAddress": "Geku Sando, Ise-shi, Mie"
+  }
 }
