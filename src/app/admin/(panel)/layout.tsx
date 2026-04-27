@@ -1,12 +1,12 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { verifyAdminToken } from "@/lib/auth";
-import AdminDashboardClient from "./DashboardClient";
+import AdminShell from "../_lib/AdminShell";
 
-export default async function AdminDashboardPage() {
+export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const store = await cookies();
   const token = store.get("admin_token")?.value;
   if (!token || !(await verifyAdminToken(token))) redirect("/admin");
 
-  return <AdminDashboardClient />;
+  return <AdminShell>{children}</AdminShell>;
 }

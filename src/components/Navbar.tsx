@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const links = [
-  { label: "Story",    href: "#tour",     kanji: "物語" },
-  { label: "Journey",  href: "#journey",  kanji: "参道" },
-  { label: "Pricing",  href: "#pricing",  kanji: "料金" },
-  { label: "FAQ",      href: "#faq",      kanji: "問" },
+  { label: "Store",          href: "/store",           kanji: "店" },
+  { label: "Tours",          href: "/tours",           kanji: "旅" },
+  { label: "Accommodations", href: "/accommodations",  kanji: "宿" },
+  { label: "Shipping",       href: "/shop",            kanji: "送" },
 ];
 
 export default function Navbar() {
@@ -53,7 +53,7 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="#booking"
+              href="/tours"
               className={`px-6 py-2.5 text-xs tracking-[0.25em] uppercase font-medium transition-all ${
                 scrolled
                   ? "bg-[var(--accent)] text-white hover:opacity-90"
@@ -86,7 +86,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#booking"
+            href="/tours"
             onClick={() => setMenuOpen(false)}
             className="block w-full text-center py-3 bg-[var(--accent)] text-white text-xs tracking-[0.3em] uppercase"
             style={{ borderRadius: 2 }}

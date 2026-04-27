@@ -43,6 +43,48 @@ export interface FAQItem {
   a: string;
 }
 
+export interface TourCard {
+  slug: string;
+  name: string;
+  kanji: string;
+  summary: string;
+  heroImage: string;
+  durationLabel: string;
+  fromPriceJpy: number;
+  location: string;
+  active: boolean;
+}
+
+export interface CategoryCard {
+  key: "store" | "tours" | "accommodations" | "shop";
+  title: string;
+  kanji: string;
+  blurb: string;
+  image: string;
+  href: string;
+  status: "live" | "construction";
+}
+
+export interface SiteConfig {
+  brandName: string;
+  brandTagline: string;
+  homeHero: {
+    eyebrow: string;
+    heading: string;
+    subheading: string;
+    backgroundImage: string;
+  };
+  categories: CategoryCard[];
+  store: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    images: string[];
+    address: string;
+    hours: string;
+  };
+}
+
 export interface Settings {
   /* tour */
   tourName: string;
@@ -111,6 +153,10 @@ export interface Settings {
     meetingPoint: string;
     meetingPointAddress: string;
   };
+
+  /* multi-tour platform */
+  site: SiteConfig;
+  tours: TourCard[];
 }
 
 export interface Booking {
@@ -312,6 +358,80 @@ const DEFAULT_SETTINGS: Settings = {
     meetingPoint: "Real Japan by YamaTrips",
     meetingPointAddress: "Geku Sando, Ise-shi, Mie",
   },
+
+  site: {
+    brandName: "Real Japan by YamaTrips",
+    brandTagline: "Quiet pilgrimages, real Japan.",
+    homeHero: {
+      eyebrow: "Real Japan by YamaTrips",
+      heading: "Walk the <em>real</em> Japan.",
+      subheading: "Guided tours, a local shop, traditional stays, and crafts shipped from Ise.",
+      backgroundImage: "/photos/24825820_m.jpeg",
+    },
+    categories: [
+      {
+        key: "store",
+        title: "Our Store",
+        kanji: "店",
+        blurb: "Visit us on Geku Sando — samue attire, Ise crafts, and local goods.",
+        image: "/photos/IMG_3545.jpg",
+        href: "/store",
+        status: "live",
+      },
+      {
+        key: "tours",
+        title: "Our Tours",
+        kanji: "旅",
+        blurb: "Bilingual walking tours through Ise's most sacred ground.",
+        image: "/photos/2801930_m.jpeg",
+        href: "/tours",
+        status: "live",
+      },
+      {
+        key: "accommodations",
+        title: "Our Accommodations",
+        kanji: "宿",
+        blurb: "Traditional stays, opening soon.",
+        image: "/photos/22321235_m.jpeg",
+        href: "/accommodations",
+        status: "construction",
+      },
+      {
+        key: "shop",
+        title: "Online Shipping",
+        kanji: "送",
+        blurb: "Ise crafts and goods, shipped worldwide. Coming soon.",
+        image: "/photos/26802378_m.jpeg",
+        href: "/shop",
+        status: "construction",
+      },
+    ],
+    store: {
+      eyebrow: "Our Store",
+      heading: "Real Japan <em>by YamaTrips.</em>",
+      paragraphs: [
+        "Our shop sits three minutes on foot from Iseshi Station, on the historic Geku Sando approach. Drop in for tea, browse samue attire and Ise crafts, or simply meet your guide before the walk.",
+        "All our tours begin and end here. We hope to see you in person.",
+      ],
+      images: ["/photos/IMG_3545.jpg", "/photos/2801930_m.jpeg"],
+      address: "Geku Sando, Ise-shi, Mie",
+      hours: "Daily, 9:00 – 17:00",
+    },
+  },
+
+  tours: [
+    {
+      slug: "ise-sacred-walk",
+      name: "Ise Sacred Walk",
+      kanji: "参道",
+      summary: "Three quiet hours through Gekū, Naikū, and the four-hundred-year-old streets of Oharaimachi.",
+      heroImage: "/photos/24825820_m.jpeg",
+      durationLabel: "3 hours",
+      fromPriceJpy: 5000,
+      location: "Ise, Mie",
+      active: true,
+    },
+  ],
 };
 
 /* ─── Persistence ─────────────────────────────────────────── */
