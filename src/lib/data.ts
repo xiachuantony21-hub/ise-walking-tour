@@ -181,7 +181,7 @@ const DEFAULT_SETTINGS: Settings = {
   sessions: {
     groupDeparture:  { active: true,  startTime: "12:00", endTime: "17:00" },
     privateWindow:   { active: true,  earliestStart: "10:00", latestStart: "14:00", durationHours: 5 },
-    arriveEarlyMinutes: 30,
+    arriveEarlyMinutes: 0,
   },
 
   pricing: {
@@ -234,7 +234,7 @@ const DEFAULT_SETTINGS: Settings = {
       romaji: "Mise",
       title: "Meet the YamaTrips Members",
       body:
-        "Arrive at our shop on Geku Sando from 11:30 — drop your luggage, meet the team, slip on a samue, and sip a charcoal-infused local drink. At 12:30 we share a 15-minute briefing on Ise and Shintō before the walk begins.",
+        "Arrive at our shop on Geku Sando by 12:00 — drop your luggage, meet the team, slip on a samue, and sip a charcoal-infused local drink. At 12:30 we share a 15-minute briefing on Ise and Shintō before the walk begins.",
       imageUrl: "/photos/IMG_3545.jpg",
     },
     {
@@ -316,11 +316,11 @@ const DEFAULT_SETTINGS: Settings = {
       "Tailored pace and stops",
       "11+ guests: free private upgrade",
     ],
-    groupDescription: "¥6,000 per person. Mixed group up to 10. Runs Monday, Wednesday, and Friday at 12:00.",
+    groupDescription: "¥6,000 per person. Mixed group up to 10. Runs Monday, Wednesday, and Saturday at 12:00.",
     groupBullets: [
       "¥6,000 per person",
       "Mixed group, up to 10 travellers",
-      "Mon · Wed · Fri departures at 12:00",
+      "Mon · Wed · Sat departures at 12:00",
       "Online advance payment via Stripe",
       "Same guide, same full route",
     ],
@@ -356,8 +356,8 @@ const DEFAULT_SETTINGS: Settings = {
 
   faq: [
     { q: "What language is the tour conducted in?", a: "The tour is fully conducted in English by our Private Licensed YamaTrips Guides." },
-    { q: "Where exactly is the meeting point?", a: "We meet at Real Japan by YamaTrips on Geku Sando — approximately 3 minutes on foot from Iseshi Station (JR/Kintetsu). Please arrive from 11:30 (group) so you have time to drop your luggage, slip on a samue, and settle in before the 12:00 meet & greet." },
-    { q: "How long is the tour?", a: "Approximately 4–5 hours. Group tours run from 12:00 (meet & greet) to 17:00 (close at the shop). Private tours can start any time between 10:00 and 14:00." },
+    { q: "Where exactly is the meeting point?", a: "We meet at Real Japan by YamaTrips on Geku Sando — approximately 3 minutes on foot from Iseshi Station (JR/Kintetsu). Please arrive by 12:00 to drop your luggage, slip on a samue, and meet the team before the 12:30 briefing." },
+    { q: "How long is the tour?", a: "Approximately 4–5 hours. Group tours run from 12:00 (meet & greet) to 17:00 (close at the shop). Group departures: Monday, Wednesday, Saturday. Private tours can start any time between 10:00 and 14:00." },
     { q: "What should I wear and bring?", a: "Comfortable walking shoes are essential — total walking distance is 3–4 km. Come hungry — the food crawl through Okage Yokochō replaces lunch. Carry some cash for street food and the bus (~¥520 per person between Gekū and Naikū)." },
     { q: "How does pricing work?", a: "Group tour: ¥6,000 per person, mixed group up to 10, runs Mon · Wed · Fri. Private tour: ¥6,000 per person plus a ¥20,000 private surcharge for a dedicated group up to 10. Groups of 11+ receive the private upgrade free of charge — please email admin@yamatrips.com." },
     { q: "How do I pay?", a: "Online advance payment via Stripe at the time of booking." },

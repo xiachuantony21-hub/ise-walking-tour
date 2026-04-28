@@ -13,8 +13,8 @@ export default function Itinerary({ chapters, arriveEarly }: { chapters: Chapter
         </h2>
         <span className="torii-line" />
         <p className="mt-8 text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-          Arrive {arriveEarly} minutes early to drop your luggage and meet the team — then 4–5 hours
-          walking and eating through Ise&apos;s two grand shrines and the Edo-era streets of Okage Yokochō.
+          Arrive at our shop by 12:00 for the meet &amp; greet — then 4–5 hours walking and eating
+          through Ise&apos;s two grand shrines and the Edo-era streets of Okage Yokochō.
         </p>
       </div>
 
