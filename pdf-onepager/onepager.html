@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ise Jingu Walk &amp; Eat — Real Japan by YamaTrips</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif; color: #14202b; background: #f4ead2; }
+.page { width: 210mm; height: 297mm; padding: 14mm 14mm; position: relative; overflow: hidden; page-break-after: always; background: #f4ead2; }
+.page:last-child { page-break-after: auto; }
+
+/* Palette
+   cream      #f4ead2
+   card       #fffaee
+   navy       #0f1e2e
+   navy-soft  #1a2740
+   vermilion  #b83d2c
+   gold       #b8895c
+   gold-lt    #e8c79a
+   forest     #2c4234
+   water      #3b5d7a
+   sumi       #14202b
+*/
+
+.kanji-watermark { position: absolute; font-family: "Hiragino Mincho ProN", serif; font-weight: 200; color: rgba(184,61,44,0.05); user-select: none; pointer-events: none; }
+
+/* ─── Page 1 cover (cream like the rest) ─── */
+.cover { background: #f4ead2; color: #14202b; padding: 0; }
+.cover-inner { position: relative; height: 100%; padding: 18mm 16mm 14mm; display: flex; flex-direction: column; justify-content: space-between; }
+.cover-eyebrow { font-size: 10pt; letter-spacing: 0.5em; text-transform: uppercase; color: #b83d2c; }
+.cover-brand { font-size: 11pt; letter-spacing: 0.18em; color: #6b5640; margin-top: 2mm; }
+.cover-title { font-size: 44pt; line-height: 1.05; font-weight: 400; margin-top: 6mm; color: #14202b; }
+.cover-title em { color: #b83d2c; font-style: italic; }
+.cover-kanji { position: absolute; top: 18mm; right: 16mm; font-size: 56pt; color: rgba(184,61,44,0.18); writing-mode: vertical-rl; }
+.cover-sub { font-size: 11.5pt; line-height: 1.7; color: #2a3848; margin-top: 8mm; max-width: 130mm; }
+.cover-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; margin-top: 10mm; padding: 6mm 4mm; background: #fffaee; border: 1px solid #d4c19a; }
+.stat-item { text-align: center; }
+.stat-kanji { font-size: 11pt; color: #b83d2c; }
+.stat-value { font-size: 14pt; color: #14202b; margin-top: 1.5mm; font-weight: 500; }
+.stat-label { font-size: 8.5pt; color: #6b5640; margin-top: 1mm; letter-spacing: 0.05em; }
+
+.cover-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 7mm; }
+.pillar { padding: 6mm 4mm; background: #fffaee; border-left: 2px solid #b83d2c; border-top: 1px solid #d4c19a; border-right: 1px solid #d4c19a; border-bottom: 1px solid #d4c19a; }
+.pillar-num { font-size: 16pt; color: #b83d2c; font-weight: 200; }
+.pillar-title { font-size: 10pt; color: #14202b; font-weight: 600; margin-top: 1mm; line-height: 1.3; }
+.pillar-jp { font-size: 8.5pt; color: #6b5640; margin-top: 0.5mm; }
+
+.cover-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 5mm; border-top: 1px solid #d4c19a; }
+.cover-foot-l { font-size: 9pt; color: #2a3848; line-height: 1.6; }
+.cover-foot-l strong { color: #b83d2c; }
+.cover-foot-r { font-size: 8.5pt; color: #6b5640; text-align: right; line-height: 1.6; }
+
+/* SVG cover scene */
+.cover-svg { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 90mm; opacity: 0.35; }
+
+/* ─── Page sections common ─── */
+.section-eyebrow { font-size: 9pt; letter-spacing: 0.4em; text-transform: uppercase; color: #b83d2c; }
+.section-title { font-family: "Hiragino Mincho ProN", serif; font-size: 24pt; line-height: 1.2; color: #14202b; margin-top: 2mm; }
+.section-title em { color: #b83d2c; font-style: italic; }
+.section-kanji-tag { font-size: 22pt; color: #b8895c; opacity: 0.6; margin-bottom: 2mm; }
+.divider-line { display: inline-block; width: 36mm; height: 1px; background: linear-gradient(90deg, transparent, #b83d2c, transparent); margin: 4mm 0; }
+
+/* USP cards page 2 */
+.usp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 8mm; }
+.usp-card { padding: 7mm 6mm; background: #fffaee; border: 1px solid #e2d4b1; border-left: 4px solid #b83d2c; }
+.usp-card.alt { border-left-color: #2c4234; }
+.usp-card.alt2 { border-left-color: #b8895c; }
+.usp-card.alt3 { border-left-color: #3b5d7a; }
+.usp-num { font-size: 8pt; letter-spacing: 0.3em; color: #b83d2c; }
+.usp-num.alt { color: #2c4234; }
+.usp-num.alt2 { color: #b8895c; }
+.usp-num.alt3 { color: #3b5d7a; }
+.usp-title { font-size: 13pt; font-weight: 600; color: #14202b; margin-top: 2mm; line-height: 1.3; }
+.usp-jp { font-size: 9pt; color: #6b5640; margin-top: 1mm; letter-spacing: 0.1em; }
+.usp-body { font-size: 9.5pt; line-height: 1.65; color: #2a3848; margin-top: 4mm; }
+
+.team-block { margin-top: 9mm; padding: 7mm 6mm; background: #14202b; color: #f4ead2; }
+.team-eyebrow { font-size: 8.5pt; letter-spacing: 0.4em; color: #e8c79a; text-transform: uppercase; }
+.team-title { font-size: 17pt; color: #fffaee; margin-top: 2mm; line-height: 1.25; }
+.team-title em { color: #d97757; font-style: italic; }
+.team-body { font-size: 9.5pt; line-height: 1.7; color: rgba(244,234,210,0.85); margin-top: 3mm; max-width: 140mm; }
+.team-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top: 5mm; }
+.team-card { padding: 4mm 3mm; background: rgba(244,234,210,0.06); border: 1px solid rgba(232,199,154,0.2); }
+.team-card-name { font-size: 9pt; color: #fffaee; font-weight: 600; }
+.team-card-role { font-size: 7.5pt; color: #e8c79a; margin-top: 1mm; letter-spacing: 0.06em; }
+.team-card-line { font-size: 8pt; color: rgba(244,234,210,0.7); margin-top: 2mm; line-height: 1.5; }
+
+/* Page 3 map */
+.map-wrap { margin-top: 5mm; height: 100mm; background: #fffaee; border: 1px solid #d4c19a; position: relative; }
+.map-svg { width: 100%; height: 100%; display: block; }
+.timeline { margin-top: 5mm; }
+.tl-row { display: grid; grid-template-columns: 24mm 1fr; gap: 5mm; padding: 2.4mm 0; border-bottom: 1px dotted #c9b88a; align-items: baseline; }
+.tl-row:last-child { border-bottom: none; }
+.tl-time { font-size: 10pt; color: #b83d2c; font-weight: 600; letter-spacing: 0.05em; }
+.tl-text { font-size: 9.5pt; color: #2a3848; line-height: 1.5; }
+.tl-text strong { color: #14202b; }
+
+/* Page 4 pricing */
+.price-row { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 6mm; }
+.price-card { padding: 7mm 6mm; background: #fffaee; border: 1px solid #d4c19a; position: relative; }
+.price-card.private { background: #14202b; color: #f4ead2; border-color: #14202b; }
+.price-card.private .pc-name, .price-card.private .pc-amount, .price-card.private .pc-line { color: #fffaee; }
+.price-card.private .pc-meta { color: #e8c79a; }
+.price-card.private .pc-bullet { color: rgba(244,234,210,0.85); }
+.pc-tag { position: absolute; top: -4mm; right: 6mm; padding: 1.5mm 4mm; background: #b83d2c; color: #fffaee; font-size: 8pt; letter-spacing: 0.2em; }
+.pc-meta { font-size: 8.5pt; letter-spacing: 0.3em; color: #b83d2c; text-transform: uppercase; }
+.pc-name { font-size: 14pt; font-weight: 600; color: #14202b; margin-top: 2mm; }
+.pc-amount { font-size: 28pt; color: #14202b; font-weight: 300; margin-top: 3mm; line-height: 1; }
+.pc-amount em { font-size: 11pt; color: #6b5640; font-style: normal; }
+.price-card.private .pc-amount em { color: #e8c79a; }
+.pc-line { font-size: 9pt; color: #6b5640; margin-top: 2mm; line-height: 1.5; }
+.pc-bullets { margin-top: 5mm; padding-top: 4mm; border-top: 1px dotted #c9b88a; }
+.price-card.private .pc-bullets { border-top-color: rgba(232,199,154,0.3); }
+.pc-bullet { font-size: 9pt; line-height: 1.7; color: #2a3848; padding-left: 4mm; position: relative; }
+.pc-bullet::before { content: "・"; position: absolute; left: 0; color: #b83d2c; }
+.price-card.private .pc-bullet::before { color: #d97757; }
+
+.note-11 { margin-top: 5mm; padding: 5mm 6mm; background: #fef5e0; border-left: 3px solid #b8895c; font-size: 9pt; line-height: 1.6; color: #5a4a30; }
+.note-11 strong { color: #14202b; }
+
+.addons { margin-top: 6mm; padding: 6mm 6mm; background: #fffaee; border: 1px solid #d4c19a; }
+.addons h4 { font-size: 11pt; color: #14202b; letter-spacing: 0.05em; }
+.addons-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4mm; margin-top: 4mm; }
+.addon { padding: 3mm 3mm; border-left: 2px solid #b8895c; }
+.addon-name { font-size: 9pt; font-weight: 600; color: #14202b; }
+.addon-jp { font-size: 8pt; color: #b83d2c; margin-top: 0.5mm; letter-spacing: 0.1em; }
+.addon-price { font-size: 11pt; color: #b83d2c; margin-top: 2mm; font-weight: 500; }
+.addon-note { font-size: 7.5pt; color: #6b5640; margin-top: 1mm; line-height: 1.4; }
+
+.cal-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2mm; margin-top: 5mm; }
+.cal-day { padding: 4mm 2mm; text-align: center; border: 1px solid #d4c19a; background: #fffaee; }
+.cal-day.group { background: #b83d2c; color: #fffaee; border-color: #b83d2c; }
+.cal-day.private { background: #14202b; color: #fffaee; border-color: #14202b; }
+.cal-d-name { font-size: 9pt; font-weight: 600; }
+.cal-d-jp { font-size: 7.5pt; opacity: 0.75; margin-top: 0.5mm; }
+.cal-d-type { font-size: 7pt; margin-top: 1.5mm; letter-spacing: 0.1em; }
+
+.bus-card { margin-top: 6mm; padding: 6mm 6mm; background: #2c4234; color: #f4ead2; }
+.bus-h { font-size: 10pt; letter-spacing: 0.3em; color: #e8c79a; text-transform: uppercase; }
+.bus-title { font-size: 14pt; color: #fffaee; margin-top: 1mm; }
+.bus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 4mm; }
+.bus-leg-name { font-size: 9pt; color: #d97757; font-weight: 600; }
+.bus-leg-times { font-size: 8.5pt; line-height: 1.7; color: rgba(244,234,210,0.85); margin-top: 1.5mm; font-family: "Menlo", "Courier New", monospace; }
+.bus-foot { font-size: 8pt; color: rgba(244,234,210,0.6); margin-top: 4mm; line-height: 1.6; }
+
+.contact-bar { margin-top: 6mm; padding: 5mm 6mm; background: #14202b; color: #fffaee; display: flex; justify-content: space-between; align-items: center; }
+.cb-l { font-size: 9pt; line-height: 1.6; color: rgba(244,234,210,0.85); }
+.cb-l strong { color: #fffaee; }
+.cb-r { font-size: 11pt; color: #e8c79a; letter-spacing: 0.1em; }
+
+.foot-mini { margin-top: 3mm; font-size: 7.5pt; color: #6b5640; text-align: center; letter-spacing: 0.1em; }
+
+/* page label */
+.page-label { position: absolute; bottom: 6mm; right: 14mm; font-size: 7.5pt; color: #6b5640; letter-spacing: 0.3em; }
+.page-label-light { color: #6b5640; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ PAGE 1 ════════════════ -->
+<section class="page cover">
+  <svg class="cover-svg" viewBox="0 0 800 380" preserveAspectRatio="none">
+    <!-- distant mountains -->
+    <path d="M0,260 L80,200 L160,230 L240,180 L320,220 L420,170 L520,210 L620,180 L720,220 L800,200 L800,380 L0,380 Z" fill="#2c4234" opacity="0.45"/>
+    <!-- nearer mountains -->
+    <path d="M0,300 L100,240 L200,280 L300,230 L400,270 L500,235 L600,275 L700,250 L800,290 L800,380 L0,380 Z" fill="#1a2740" opacity="0.55"/>
+    <!-- forest line -->
+    <path d="M0,320 L800,320 L800,380 L0,380 Z" fill="#14202b" opacity="0.6"/>
+    <!-- cedars -->
+    <g fill="#14202b" opacity="0.55">
+      <path d="M120,320 L130,280 L140,320 Z"/>
+      <path d="M180,320 L192,275 L204,320 Z"/>
+      <path d="M260,320 L268,290 L276,320 Z"/>
+      <path d="M540,320 L552,278 L564,320 Z"/>
+      <path d="M620,320 L630,285 L640,320 Z"/>
+      <path d="M700,320 L712,272 L724,320 Z"/>
+    </g>
+    <!-- torii silhouette -->
+    <g transform="translate(380,180)" fill="#b83d2c" opacity="0.7">
+      <rect x="-50" y="0" width="100" height="6"/>
+      <rect x="-46" y="6" width="92" height="3"/>
+      <rect x="-38" y="9" width="6" height="50"/>
+      <rect x="32" y="9" width="6" height="50"/>
+      <path d="M-58,-3 L58,-3 L52,3 L-52,3 Z"/>
+    </g>
+  </svg>
+  <div class="kanji-watermark" style="font-size: 220pt; top: 70mm; right: -10mm;">参</div>
+
+  <div class="cover-inner">
+    <div>
+      <div class="cover-eyebrow">Real Japan by YamaTrips presents</div>
+      <div class="cover-brand">伊勢神宮 · 外宮参道</div>
+      <div class="cover-kanji">伊勢</div>
+      <h1 class="cover-title">Ise Jingu<br/><em>Walk &amp; Eat.</em></h1>
+      <p class="cover-sub">A 4-hour bilingual walking and snacking tour through Japan's most sacred shrines, led by your <strong style="color:#b83d2c">YamaTrips-Licensed Guides</strong>. We walk the traditional pilgrimage order — Gekū first, then Naikū — and end with traditional snacks in the Edo-era streets of Okage Yokochō.</p>
+    </div>
+
+    <div>
+      <div class="cover-stats">
+        <div class="stat-item"><div class="stat-kanji">時</div><div class="stat-value">4 hours</div><div class="stat-label">WALK &amp; EAT</div></div>
+        <div class="stat-item"><div class="stat-kanji">日</div><div class="stat-value">Wed · Fri · Sat</div><div class="stat-label">12:00 START</div></div>
+        <div class="stat-item"><div class="stat-kanji">人</div><div class="stat-value">1 – 8</div><div class="stat-label">GUARANTEED RUN</div></div>
+        <div class="stat-item"><div class="stat-kanji">語</div><div class="stat-value">English</div><div class="stat-label">BILINGUAL</div></div>
+        <div class="stat-item"><div class="stat-kanji">¥</div><div class="stat-value">¥10,000</div><div class="stat-label">PER PERSON</div></div>
+      </div>
+
+      <div class="cover-pillars">
+        <div class="pillar"><div class="pillar-num">01</div><div class="pillar-title">Traditional<br/>Pilgrimage Order</div><div class="pillar-jp">外宮 → 内宮</div></div>
+        <div class="pillar"><div class="pillar-num">02</div><div class="pillar-title">Deep Cultural<br/>Learning</div><div class="pillar-jp">神道 · 伊勢 · 三重</div></div>
+        <div class="pillar"><div class="pillar-num">03</div><div class="pillar-title">Hands-Free<br/>Pilgrimage</div><div class="pillar-jp">手ぶら参拝</div></div>
+        <div class="pillar"><div class="pillar-num">04</div><div class="pillar-title">Walk &amp; Eat<br/>Local Snacks</div><div class="pillar-jp">食べ歩き</div></div>
+      </div>
+    </div>
+
+    <div class="cover-foot">
+      <div class="cover-foot-l">
+        <strong style="color:#e8c79a">Real Japan by YamaTrips</strong><br/>
+        Geku Sando, Ise-shi, Mie · 3-min walk from Iseshi Station<br/>
+        admin@yamatrips.com
+      </div>
+      <div class="cover-foot-r">
+        — Walk where Emperors walked.<br/>
+        Eat where the pilgrims ate.<br/>
+        <span style="color:#d97757; letter-spacing: 0.3em;">巡 · 食 · 学</span>
+      </div>
+    </div>
+  </div>
+  <div class="page-label page-label-light">01 / 04</div>
+</section>
+
+<!-- ════════════════ PAGE 2 — Why Walk With Us ════════════════ -->
+<section class="page">
+  <div class="kanji-watermark" style="font-size: 240pt; top: -20mm; left: -20mm;">巡</div>
+  <div class="kanji-watermark" style="font-size: 180pt; bottom: -10mm; right: -10mm; color: rgba(44,66,52,0.06);">学</div>
+
+  <div style="position: relative;">
+    <div class="section-kanji-tag">差別化</div>
+    <div class="section-eyebrow">Why walk with us</div>
+    <h2 class="section-title">Four reasons we are <em>not like the others.</em></h2>
+    <span class="divider-line"></span>
+  </div>
+
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="usp-num">USP 01 · 正統性</div>
+      <div class="usp-title">Traditional Pilgrimage Order</div>
+      <div class="usp-jp">外宮 → 内宮 — the way it has been done for 1,500 years</div>
+      <p class="usp-body">Pilgrims have visited Gekū (Outer Shrine) before Naikū (Inner Shrine) for over a millennium. We walk Ise the way the ancients walked it — and explain why the order matters.</p>
+    </div>
+
+    <div class="usp-card alt">
+      <div class="usp-num alt">USP 02 · 学び</div>
+      <div class="usp-title">Deep Cultural Learning at Our Shop</div>
+      <div class="usp-jp">日本 · 神道 · 伊勢 · 三重 · 日本人の習慣</div>
+      <p class="usp-body">A 15-minute briefing inside our shop covers Shintō, Ise, Mie, and everyday Japanese customs. By the time you reach the torii, you understand what you are about to see.</p>
+    </div>
+
+    <div class="usp-card alt2">
+      <div class="usp-num alt2">USP 03 · 手ぶら</div>
+      <div class="usp-title">Hands-Free Pilgrimage</div>
+      <div class="usp-jp">手ぶら参拝 — 3 minutes from Iseshi Station</div>
+      <p class="usp-body">Drop your suitcases at our shop, slip into a samue, walk Ise unburdened. No coin lockers, no detours. Collect everything at 16:45.</p>
+    </div>
+
+    <div class="usp-card alt3">
+      <div class="usp-num alt3">USP 04 · 食</div>
+      <div class="usp-title">Walk &amp; Eat Local Traditional Snacks</div>
+      <div class="usp-jp">食べ歩き — a culture rarely allowed elsewhere</div>
+      <p class="usp-body">Walk-and-eat is discouraged in most of Japan — but Okage Yokochō was built for it. Matsusaka beef skewers, Ise udon, tekone-zushi, akafuku mochi, fresh oysters. A snack crawl, not a sit-down lunch.</p>
+    </div>
+  </div>
+
+  <div class="team-block">
+    <div class="team-eyebrow">Meet the team</div>
+    <h3 class="team-title">Real Japan <em>by YamaTrips.</em></h3>
+    <p class="team-body">YamaTrips is a Mie-based inbound travel company specialising in mountain and pilgrimage tours. Our shop on Geku Sando is the meeting point — and the home of every guide on this walk. You don't just buy a tour. You meet the team.</p>
+    <div class="team-row">
+      <div class="team-card"><div class="team-card-name">Lead Bilingual Guide</div><div class="team-card-role">案内人</div><div class="team-card-line">YamaTrips-Licensed. Trained in Shintō ritual &amp; Ise history. English / 日本語.</div></div>
+      <div class="team-card"><div class="team-card-name">Shop Members</div><div class="team-card-role">店員</div><div class="team-card-line">Welcome you in, hold your luggage, and walk you through Mie's hidden gems via books &amp; videos.</div></div>
+      <div class="team-card"><div class="team-card-name">Local Storyteller</div><div class="team-card-role">語り部</div><div class="team-card-line">Born &amp; raised in Mie. Knows the hidden lore of every torii and tea house.</div></div>
+      <div class="team-card"><div class="team-card-name">Food Concierge</div><div class="team-card-role">食案内</div><div class="team-card-line">Recommends the best stalls in Okage Yokochō so you eat what locals eat.</div></div>
+    </div>
+  </div>
+
+  <div class="page-label">02 / 04</div>
+</section>
+
+<!-- ════════════════ PAGE 3 — Route + Timeline ════════════════ -->
+<section class="page">
+  <div class="kanji-watermark" style="font-size: 240pt; top: -20mm; right: -20mm;">道</div>
+
+  <div style="position: relative;">
+    <div class="section-kanji-tag">参道</div>
+    <div class="section-eyebrow">The Sacred Route</div>
+    <h2 class="section-title">A 4-hour <em>walking pilgrimage.</em></h2>
+    <span class="divider-line"></span>
+  </div>
+
+  <div class="map-wrap">
+    <svg class="map-svg" viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id="forestG" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#2c4234" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#2c4234" stop-opacity="0.15"/>
+        </radialGradient>
+        <radialGradient id="forestN" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1f3326" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#1f3326" stop-opacity="0.15"/>
+        </radialGradient>
+        <pattern id="paper" width="6" height="6" patternUnits="userSpaceOnUse">
+          <rect width="6" height="6" fill="#fffaee"/>
+          <circle cx="2" cy="3" r="0.4" fill="#e8d6a8" opacity="0.3"/>
+          <circle cx="5" cy="1" r="0.3" fill="#e8d6a8" opacity="0.3"/>
+        </pattern>
+      </defs>
+      <rect width="800" height="380" fill="url(#paper)"/>
+
+      <!-- Geku forest blob (left) -->
+      <ellipse cx="170" cy="210" rx="105" ry="80" fill="url(#forestG)"/>
+      <!-- Naiku forest blob (right) -->
+      <ellipse cx="600" cy="210" rx="120" ry="92" fill="url(#forestN)"/>
+
+      <!-- cedar tree details -->
+      <g fill="#2c4234" opacity="0.6">
+        <path d="M120,180 L125,165 L130,180 Z"/>
+        <path d="M145,195 L151,178 L157,195 Z"/>
+        <path d="M195,170 L201,153 L207,170 Z"/>
+        <path d="M220,200 L226,182 L232,200 Z"/>
+        <path d="M165,235 L170,220 L175,235 Z"/>
+      </g>
+      <g fill="#1f3326" opacity="0.55">
+        <path d="M555,180 L562,160 L569,180 Z"/>
+        <path d="M585,200 L592,178 L599,200 Z"/>
+        <path d="M625,170 L633,148 L641,170 Z"/>
+        <path d="M650,205 L657,183 L664,205 Z"/>
+        <path d="M610,245 L617,225 L624,245 Z"/>
+      </g>
+
+      <!-- Isuzu river curve (right side, by Naiku) -->
+      <path d="M520,290 Q560,255 595,250 Q640,245 690,275" fill="none" stroke="#3b5d7a" stroke-width="3" opacity="0.6"/>
+      <text x="650" y="295" font-family="serif" font-size="8" fill="#3b5d7a" font-style="italic">Isuzu R.</text>
+
+      <!-- Iseshi Station (top-left) -->
+      <g transform="translate(60,80)">
+        <rect x="-14" y="-8" width="28" height="16" fill="#14202b"/>
+        <text x="0" y="3" font-size="7" fill="#fffaee" text-anchor="middle" font-weight="bold">JR/近鉄</text>
+        <text x="0" y="22" font-size="7.5" fill="#14202b" text-anchor="middle" font-weight="bold">Iseshi Stn.</text>
+        <text x="0" y="32" font-size="6" fill="#6b5640" text-anchor="middle">伊勢市駅</text>
+      </g>
+
+      <!-- Shop (between station and Geku) -->
+      <g transform="translate(135,140)">
+        <circle cx="0" cy="0" r="9" fill="#b83d2c" stroke="#fffaee" stroke-width="2"/>
+        <circle cx="0" cy="0" r="3" fill="#fffaee"/>
+        <path d="M0,9 L-5,18 L5,18 Z" fill="#b83d2c"/>
+        <rect x="14" y="-12" width="92" height="22" fill="#fffaee" stroke="#b83d2c" stroke-width="1"/>
+        <text x="60" y="-3" font-size="7.5" fill="#b83d2c" text-anchor="middle" font-weight="bold">Real Japan by YamaTrips</text>
+        <text x="60" y="6" font-size="6.5" fill="#6b5640" text-anchor="middle">外宮参道のど真ん中</text>
+      </g>
+
+      <!-- Path station → shop (dashed) -->
+      <path d="M75,90 Q100,115 130,135" fill="none" stroke="#6b5640" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.7"/>
+      <text x="78" y="120" font-size="6.5" fill="#6b5640" font-style="italic">3 min walk</text>
+
+      <!-- Geku torii pin -->
+      <g transform="translate(170,210)">
+        <g transform="translate(0,-20)">
+          <rect x="-12" y="-2" width="24" height="2" fill="#b83d2c"/>
+          <rect x="-10" y="0" width="20" height="1" fill="#b83d2c"/>
+          <rect x="-7" y="1" width="2" height="14" fill="#b83d2c"/>
+          <rect x="5" y="1" width="2" height="14" fill="#b83d2c"/>
+        </g>
+        <circle cx="0" cy="0" r="6" fill="#14202b"/>
+        <text x="0" y="2.5" font-size="7" fill="#fffaee" text-anchor="middle" font-weight="bold">外</text>
+        <text x="0" y="22" font-size="8" fill="#14202b" text-anchor="middle" font-weight="bold">Gekū</text>
+        <text x="0" y="32" font-size="6.5" fill="#6b5640" text-anchor="middle">外宮 · Outer Shrine</text>
+      </g>
+
+      <!-- Path shop → Geku (dashed walking) -->
+      <path d="M145,150 Q160,180 168,200" fill="none" stroke="#b83d2c" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="120" y="180" font-size="7" fill="#b83d2c" font-style="italic">15 min walk</text>
+
+      <!-- Bus arc Geku → Naiku -->
+      <path d="M180,200 Q380,90 590,200" fill="none" stroke="#b8895c" stroke-width="2" stroke-dasharray="6,3" opacity="0.85"/>
+      <polygon points="580,196 596,200 580,205" fill="#b8895c"/>
+      <g transform="translate(380,110)">
+        <rect x="-30" y="-8" width="60" height="16" fill="#fef5e0" stroke="#b8895c" stroke-width="1"/>
+        <text x="0" y="-1" font-size="7" fill="#5a4a30" text-anchor="middle" font-weight="bold">三重交通バス</text>
+        <text x="0" y="6" font-size="6.5" fill="#6b5640" text-anchor="middle">¥520 · ~12 min</text>
+      </g>
+
+      <!-- Naiku torii pin -->
+      <g transform="translate(600,210)">
+        <g transform="translate(0,-20)">
+          <rect x="-12" y="-2" width="24" height="2" fill="#b83d2c"/>
+          <rect x="-10" y="0" width="20" height="1" fill="#b83d2c"/>
+          <rect x="-7" y="1" width="2" height="14" fill="#b83d2c"/>
+          <rect x="5" y="1" width="2" height="14" fill="#b83d2c"/>
+        </g>
+        <circle cx="0" cy="0" r="6" fill="#14202b"/>
+        <text x="0" y="2.5" font-size="7" fill="#fffaee" text-anchor="middle" font-weight="bold">内</text>
+        <text x="0" y="22" font-size="8" fill="#14202b" text-anchor="middle" font-weight="bold">Naikū</text>
+        <text x="0" y="32" font-size="6.5" fill="#6b5640" text-anchor="middle">内宮 · Inner Shrine</text>
+      </g>
+
+      <!-- Okage Yokocho area -->
+      <g transform="translate(670,300)">
+        <rect x="-32" y="-7" width="64" height="14" fill="#b83d2c" opacity="0.85"/>
+        <text x="0" y="2" font-size="7" fill="#fffaee" text-anchor="middle" font-weight="bold">おかげ横丁</text>
+        <text x="0" y="20" font-size="7" fill="#14202b" text-anchor="middle" font-weight="bold">Okage Yokochō</text>
+        <text x="0" y="29" font-size="6" fill="#6b5640" text-anchor="middle">Walk &amp; Eat — your lunch</text>
+      </g>
+      <path d="M610,225 Q640,265 660,295" fill="none" stroke="#b83d2c" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+      <!-- Compass -->
+      <g transform="translate(740,60)">
+        <circle cx="0" cy="0" r="14" fill="#fffaee" stroke="#14202b" stroke-width="1"/>
+        <polygon points="0,-10 3,0 0,10 -3,0" fill="#b83d2c"/>
+        <text x="0" y="-16" font-size="7" fill="#14202b" text-anchor="middle" font-weight="bold">N</text>
+      </g>
+
+      <!-- Scale bar -->
+      <g transform="translate(60,340)">
+        <line x1="0" y1="0" x2="60" y2="0" stroke="#14202b" stroke-width="1.5"/>
+        <line x1="0" y1="-3" x2="0" y2="3" stroke="#14202b" stroke-width="1.5"/>
+        <line x1="60" y1="-3" x2="60" y2="3" stroke="#14202b" stroke-width="1.5"/>
+        <text x="30" y="14" font-size="7" fill="#14202b" text-anchor="middle">≈ 1 km</text>
+      </g>
+
+      <!-- Legend -->
+      <g transform="translate(540,335)">
+        <line x1="0" y1="0" x2="14" y2="0" stroke="#b83d2c" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="18" y="3" font-size="7" fill="#14202b">walk</text>
+        <line x1="50" y1="0" x2="64" y2="0" stroke="#b8895c" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <text x="68" y="3" font-size="7" fill="#14202b">bus</text>
+        <line x1="100" y1="0" x2="114" y2="0" stroke="#6b5640" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="118" y="3" font-size="7" fill="#14202b">access</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-row"><div class="tl-time">12:00 – 12:30</div><div class="tl-text"><strong>Meet &amp; greet at our shop.</strong> Drop your luggage, relax, and explore the books and videos on Mie's hidden gems — onsens, mountains, fishing villages, festivals, and where locals actually go.</div></div>
+    <div class="tl-row"><div class="tl-time">12:30 – 12:45</div><div class="tl-text"><strong>Deep cultural briefing</strong> — 15 minutes inside the shop on Japan, Shintō, Ise, Mie, and Japanese customs. Then we step outside.</div></div>
+    <div class="tl-row"><div class="tl-time">12:45 – 13:00</div><div class="tl-text">Walk down Geku Sandō, the historic pilgrim approach.</div></div>
+    <div class="tl-row"><div class="tl-time">13:00 – 13:30</div><div class="tl-text"><strong>Gekū (外宮) — the Outer Shrine.</strong> Visited first, per 1,500 years of pilgrimage tradition. Toyouke Ōmikami, deity of food, clothing &amp; shelter.</div></div>
+    <div class="tl-row"><div class="tl-time">13:35 – 13:55</div><div class="tl-text">Mie Kōtsū bus: 外宮前 → 内宮前 (¥520, ~12 min, paid in cash on board).</div></div>
+    <div class="tl-row"><div class="tl-time">14:00 – 14:40</div><div class="tl-text"><strong>Naikū (内宮) — the Inner Shrine.</strong> Cross Uji Bridge, walk along the Isuzu River, stand before Amaterasu Ōmikami — the most sacred site in Japan.</div></div>
+    <div class="tl-row"><div class="tl-time">14:40 – 15:45</div><div class="tl-text"><strong>Okage Yokochō — Walk &amp; Eat traditional snacks.</strong> Matsusaka beef skewers, Ise udon, tekone-zushi, akafuku mochi, fresh oysters. Pay-as-you-go.</div></div>
+    <div class="tl-row"><div class="tl-time">15:50 – 16:15</div><div class="tl-text">Bus back from 内宮前 to Iseshi area. Final reflections en route.</div></div>
+    <div class="tl-row"><div class="tl-time">16:15 – 16:45</div><div class="tl-text">Return to <strong>Real Japan by YamaTrips</strong>. Take your time browsing omamori, samue, stickers &amp; Mie crafts. Collect your luggage. Tour closes at 16:45.</div></div>
+  </div>
+
+  <div class="page-label">03 / 04</div>
+</section>
+
+<!-- ════════════════ PAGE 4 — Pricing + Booking ════════════════ -->
+<section class="page">
+  <div class="kanji-watermark" style="font-size: 240pt; top: -20mm; left: -10mm; color: rgba(184,61,44,0.05);">価</div>
+
+  <div style="position: relative;">
+    <div class="section-kanji-tag">料金</div>
+    <div class="section-eyebrow">Pricing &amp; Booking</div>
+    <h2 class="section-title">Choose your <em>pilgrimage.</em></h2>
+    <span class="divider-line"></span>
+  </div>
+
+  <div class="price-row">
+    <div class="price-card">
+      <div class="pc-meta">Group · 公開ツアー</div>
+      <div class="pc-name">Mixed Group Tour</div>
+      <div class="pc-amount">¥7,500 <em>/ person</em></div>
+      <div class="pc-line">Wed · Fri · Sat · 12:00 – 16:45. Up to 8 mixed travellers. <strong>Guaranteed departure — runs even with 1 traveller.</strong></div>
+      <div class="pc-bullets">
+        <div class="pc-bullet">¥10,000 per person · all guiding included</div>
+        <div class="pc-bullet">Wed · Fri · Sat · 12:00 – 16:45</div>
+        <div class="pc-bullet">Guaranteed departure — runs from 1 traveller</div>
+        <div class="pc-bullet">Mixed group up to 8 people</div>
+        <div class="pc-bullet">Online advance payment via Stripe</div>
+        <div class="pc-bullet">YamaTrips-Licensed bilingual guide</div>
+      </div>
+    </div>
+
+    <div class="price-card private">
+      <div class="pc-tag">REQUEST</div>
+      <div class="pc-meta">Private · プライベート</div>
+      <div class="pc-name">Private Tour (Add-on)</div>
+      <div class="pc-amount">+¥30,000 <em>/ group</em></div>
+      <div class="pc-line">Your party only. Choose any start between 10:00 and 14:00. Book online — request-based.</div>
+      <div class="pc-bullets">
+        <div class="pc-bullet">¥10,000 / person + ¥30,000 private surcharge</div>
+        <div class="pc-bullet">Your party only · up to 8 people</div>
+        <div class="pc-bullet">Flexible start (10:00 – 14:00)</div>
+        <div class="pc-bullet">Tailored pace and stops</div>
+        <div class="pc-bullet">Book online — request-based</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-11">
+    <strong>Groups larger than 8:</strong> Email <strong>admin@yamatrips.com</strong> to inquire about custom pricing. Perfect for incentive trips, family reunions, and student groups.
+  </div>
+
+  <div class="addons">
+    <h4 style="display: flex; justify-content: space-between; align-items: baseline;"><span>Add-ons &amp; In-Shop Items</span><span style="font-size: 8.5pt; color: #b83d2c; letter-spacing: 0.2em;">OPTIONAL</span></h4>
+    <div class="addons-grid">
+      <div class="addon">
+        <div class="addon-name">Samue Rental</div>
+        <div class="addon-jp">作務衣レンタル</div>
+        <div class="addon-price">¥3,500</div>
+        <div class="addon-note">Worn during the tour. Returned at 16:45.</div>
+      </div>
+      <div class="addon">
+        <div class="addon-name">Samue Purchase</div>
+        <div class="addon-jp">作務衣販売</div>
+        <div class="addon-price">¥15,000</div>
+        <div class="addon-note">Take home what you wore. Multiple sizes.</div>
+      </div>
+      <div class="addon">
+        <div class="addon-name">Stickers, Drinks &amp; Omamori</div>
+        <div class="addon-jp">ステッカー・ドリンク・御守</div>
+        <div class="addon-price">¥500 – 1,000</div>
+        <div class="addon-note">Local Mie souvenirs &amp; shrine talismans.</div>
+      </div>
+      <div class="addon">
+        <div class="addon-name">Luggage Storage</div>
+        <div class="addon-jp">荷物預かり</div>
+        <div class="addon-price">FREE</div>
+        <div class="addon-note">All tour participants. Up to 16:45.</div>
+      </div>
+    </div>
+    <div style="margin-top: 5mm; padding-top: 3mm; border-top: 1px dotted #c9b88a; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; font-size: 9pt; line-height: 1.6;">
+      <div><strong style="color:#14202b;">Included in tour fee:</strong> YamaTrips-Licensed bilingual guide · Cultural briefing · Welcome drink at the shop · Luggage storage · Walk &amp; Eat introductions in Okage Yokochō.</div>
+      <div><strong style="color:#b83d2c;">Not included:</strong> Food in Okage Yokochō (¥1,500–3,000 typical, pay-as-you-go) · Bus fare 外宮↔内宮 ¥520/pp · Shrine entry (always free) · Samue rental.</div>
+    </div>
+  </div>
+
+  <div class="cal-row">
+    <div class="cal-day"><div class="cal-d-name">Sun</div><div class="cal-d-jp">日</div><div class="cal-d-type">PRIVATE ON REQUEST</div></div>
+    <div class="cal-day"><div class="cal-d-name">Mon</div><div class="cal-d-jp">月</div><div class="cal-d-type">PRIVATE ON REQUEST</div></div>
+    <div class="cal-day"><div class="cal-d-name">Tue</div><div class="cal-d-jp">火</div><div class="cal-d-type">PRIVATE ON REQUEST</div></div>
+    <div class="cal-day group"><div class="cal-d-name">Wed</div><div class="cal-d-jp">水</div><div class="cal-d-type">GROUP 12:00</div></div>
+    <div class="cal-day"><div class="cal-d-name">Thu</div><div class="cal-d-jp">木</div><div class="cal-d-type">PRIVATE ON REQUEST</div></div>
+    <div class="cal-day group"><div class="cal-d-name">Fri</div><div class="cal-d-jp">金</div><div class="cal-d-type">GROUP 12:00</div></div>
+    <div class="cal-day group"><div class="cal-d-name">Sat</div><div class="cal-d-jp">土</div><div class="cal-d-type">GROUP 12:00</div></div>
+  </div>
+
+  <div class="bus-card">
+    <div class="bus-h">Bus reference · 三重交通</div>
+    <div class="bus-title">Mie Kōtsū — between Gekū &amp; Naikū <span style="font-size:9pt; color:#e8c79a;">¥520 · ~12 min</span></div>
+    <div class="bus-grid">
+      <div>
+        <div class="bus-leg-name">外宮前 → 内宮前 (Gekū → Naikū)</div>
+        <div class="bus-leg-times">13:34 · 13:43 (特急) · 13:58<br/>routes 51 / 55 / 特急 — board at 外宮前 stop</div>
+      </div>
+      <div>
+        <div class="bus-leg-name">内宮前 → 外宮前 / 伊勢市駅</div>
+        <div class="bus-leg-times">15:34 (特急) · 15:55 · 16:10 (特急)<br/>board at 内宮前 stop, alight at 外宮前 or 伊勢市駅前</div>
+      </div>
+    </div>
+    <div class="bus-foot">Cash only. ¥520 per ride. Your guide rides with you. Schedules current as of 2026 — confirm with your guide on the day.</div>
+  </div>
+
+  <div class="contact-bar">
+    <div class="cb-l">
+      <strong>Real Japan by YamaTrips</strong> · Geku Sandō, Ise-shi, Mie<br/>
+      3-min walk from JR / Kintetsu <strong>Iseshi Station</strong> · Daily 9:00 – 18:00
+    </div>
+    <div class="cb-r">admin@yamatrips.com</div>
+  </div>
+
+  <div class="foot-mini">参 · 学 · 食 — Walk · Learn · Eat · Real Japan by YamaTrips · 株式会社 YamaTrips</div>
+  <div class="page-label">04 / 04</div>
+</section>
+
+</body>
+</html>
