@@ -175,18 +175,18 @@ export interface Booking {
 /* ─── Default settings (used on first boot) ──────────────── */
 
 const DEFAULT_SETTINGS: Settings = {
-  tourName: "Ise Sacred Walk",
-  maxParticipants: 12,
+  tourName: "Ise Sacred Walk & Eat",
+  maxParticipants: 10,
 
   sessions: {
-    groupDeparture:  { active: true,  startTime: "12:00", endTime: "15:00" },
-    privateWindow:   { active: true,  earliestStart: "10:00", latestStart: "14:00", durationHours: 3 },
-    arriveEarlyMinutes: 15,
+    groupDeparture:  { active: true,  startTime: "12:00", endTime: "17:00" },
+    privateWindow:   { active: true,  earliestStart: "10:00", latestStart: "14:00", durationHours: 5 },
+    arriveEarlyMinutes: 30,
   },
 
   pricing: {
-    private: { basePrice: 20000, basePersons: 2, additionalPersonPrice: 5000 },
-    group:   { pricePerPerson: 5000, minParticipants: 4 },
+    private: { basePrice: 26000, basePersons: 1, additionalPersonPrice: 6000 },
+    group:   { pricePerPerson: 6000, minParticipants: 1 },
   },
 
   blockedDates: [],
@@ -194,9 +194,9 @@ const DEFAULT_SETTINGS: Settings = {
 
   hero: {
     eyebrow: "A Sacred Walk in Ise",
-    heading: "Where the gods<br/>still <em>walk at dawn.</em>",
+    heading: "Walk and eat your way<br/>through <em>Real Japan.</em>",
     subheading:
-      "A three-hour pilgrimage through Japan's most revered shrines — Gekū, Naikū, and the four-hundred-year-old streets of Oharaimachi. Guided in English.",
+      "A four-to-five-hour walking and eating tour through Ise's two grand shrines and the Edo-era streets of Okage Yokochō — led by our own Private Licensed YamaTrips Guides. Come hungry.",
     slides: [
       { imageUrl: "/photos/24825820_m.jpeg", kanji: "鳥居", caption: "Pass beneath the torii" },
       { imageUrl: "/photos/2801930_m.jpeg",  kanji: "森",   caption: "The mossy cedar path" },
@@ -211,7 +211,7 @@ const DEFAULT_SETTINGS: Settings = {
     heading: "A quiet pilgrimage,<br/>told in <em>English.</em>",
     paragraphs: [
       "For over two thousand years, pilgrims have walked to Ise. Emperors, poets, merchants, farmers — all have come to stand before Amaterasu, the sun goddess, at the holiest shrine in Japan.",
-      "We walk the same path, at the same pace, for three quiet hours. No rush, no schedule besides the one the cedars keep.",
+      "We meet you at our shop on the Geku approach, slip on a samue, share a 15-minute briefing on Ise and Shintō, and walk the path together — through serene cedar forests, ancient rituals, and the bustling Edo-era food street of Okage Yokochō.",
     ],
     images: [
       "/photos/24825820_m.jpeg",
@@ -222,8 +222,8 @@ const DEFAULT_SETTINGS: Settings = {
   },
 
   stats: [
-    { kanji: "時", value: "3 Hours",     label: "Guided walk" },
-    { kanji: "人", value: "2 – 12",      label: "Small group" },
+    { kanji: "時", value: "4 – 5 Hours", label: "Walk & eat" },
+    { kanji: "人", value: "Up to 10",    label: "Small group" },
     { kanji: "駅", value: "3 min walk",  label: "From Iseshi Station" },
     { kanji: "社", value: "Two Shrines", label: "Gekū · Naikū" },
   ],
@@ -232,9 +232,9 @@ const DEFAULT_SETTINGS: Settings = {
     {
       kanji: "店",
       romaji: "Mise",
-      title: "Real Japan by YamaTrips",
+      title: "Meet the YamaTrips Members",
       body:
-        "We open with tea at our shop on Geku Sando. Arrive 15 minutes early to browse samue attire, Ise crafts, and local goods before the walk begins. Your guide will introduce the day's route over a warm welcome.",
+        "Arrive at our shop on Geku Sando from 11:30 — drop your luggage, meet the team, slip on a samue, and sip a charcoal-infused local drink. At 12:30 we share a 15-minute briefing on Ise and Shintō before the walk begins.",
       imageUrl: "/photos/IMG_3545.jpg",
     },
     {
@@ -262,12 +262,20 @@ const DEFAULT_SETTINGS: Settings = {
       imageUrl: "/photos/24825820_m.jpeg",
     },
     {
-      kanji: "おはらい町",
-      romaji: "Oharaimachi",
-      title: "Oharaimachi · The Pilgrim's Street",
+      kanji: "おかげ横丁",
+      romaji: "Okage Yokochō",
+      title: "Okage Yokochō · The Edo Food Street",
       body:
-        "Edo-period storefronts line the walk back from Naikū. Here we share 食べ歩き — Matsusaka beef skewers, Ise udon, akafuku mochi, fresh oysters. Your guide recommends the best stands; purchases are on your own so you can pick what you love.",
+        "Edo-era storefronts line the streets back from Naikū. Come hungry — this food crawl replaces lunch. Matsusaka beef skewers, Ise udon, tekone-zushi, akafuku mochi, fresh oysters. Your guide leads you to the best stands; purchases are on your own so you can pick what you love.",
       imageUrl: "/photos/26802378_m.jpeg",
+    },
+    {
+      kanji: "帰店",
+      romaji: "Kiten",
+      title: "Return to the Shop",
+      body:
+        "Around 16:30 we return by bus to Real Japan by YamaTrips. Browse omamori, samue, and local crafts, settle into the shop, and close the day at 17:00.",
+      imageUrl: "/photos/IMG_3545.jpg",
     },
   ],
 
@@ -276,22 +284,23 @@ const DEFAULT_SETTINGS: Settings = {
     eyebrow: "The Pilgrim's Kit",
     heading: "What comes<br/>with the <em>walk.</em>",
     included: [
-      "Expert bilingual guide (English & Japanese)",
-      "Welcome tea at the YamaTrips shop on Geku Sando",
+      "Private Licensed YamaTrips Guides (English & Japanese)",
+      "Meet & greet at the shop, samue to wear during the tour",
+      "Charcoal-infused local welcome drink",
+      "15-minute briefing on Ise and Shintō",
+      "Luggage drop at the shop during the tour",
       "Guided walk of Gekū — the Outer Shrine",
-      "Bus transfer from Gekū to Naikū",
-      "Guided exploration of Naikū — the Inner Shrine",
-      "Street food introductions in Oharaimachi",
-      "Best photo spots along the path",
+      "Guided walk of Naikū — the Inner Shrine",
+      "Food crawl through Okage Yokochō (replaces lunch)",
     ],
     notIncluded: [
       "Shrine entry (always free)",
-      "Personal food & drink purchases",
-      "Return transport from Oharaimachi",
-      "Bus fare from Gekū to Naikū (~¥140 pp)",
+      "Personal food & drink purchases on Okage Yokochō",
+      "Bus fares between Gekū and Naikū (~¥520 pp)",
+      "Travel to Iseshi Station",
     ],
     foodImage: "/photos/26802378_m.jpeg",
-    foodCaption: "Eat as the pilgrims did — Matsusaka skewers, Ise udon, akafuku mochi.",
+    foodCaption: "Come hungry — Matsusaka skewers, Ise udon, tekone-zushi, akafuku mochi.",
   },
 
   pricingSection: {
@@ -299,18 +308,20 @@ const DEFAULT_SETTINGS: Settings = {
     eyebrow: "The Offering",
     heading: "Choose your<br/><em>pilgrimage.</em>",
     backdropImage: "/photos/24825820_m.jpeg",
-    privateDescription: "Your party only. Choose any start between 10:00 and 14:00.",
+    privateDescription: "¥6,000 per person + ¥20,000 private surcharge. Your party only — choose any start between 10:00 and 14:00. Groups of 11+ receive the private upgrade free of charge — email admin@yamatrips.com.",
     privateBullets: [
-      "Your party only",
+      "¥6,000 / person + ¥20,000 private surcharge",
+      "Your party only — up to 10 participants",
       "Flexible start (10:00 – 14:00)",
-      "Up to 12 participants",
       "Tailored pace and stops",
+      "11+ guests: free private upgrade",
     ],
-    groupDescription: "A shared walk. Departs once daily at 12:00.",
+    groupDescription: "¥6,000 per person. Mixed group up to 10. Runs Monday, Wednesday, and Friday at 12:00.",
     groupBullets: [
-      "Meet fellow travellers",
-      "Single daily departure — 12:00",
-      "Minimum 4 to run",
+      "¥6,000 per person",
+      "Mixed group, up to 10 travellers",
+      "Mon · Wed · Fri departures at 12:00",
+      "Online advance payment via Stripe",
       "Same guide, same full route",
     ],
   },
@@ -344,19 +355,21 @@ const DEFAULT_SETTINGS: Settings = {
   },
 
   faq: [
-    { q: "What language is the tour conducted in?", a: "The tour is fully conducted in English by an expert bilingual guide." },
-    { q: "Where exactly is the meeting point?", a: "We meet at Real Japan by YamaTrips on Geku Sando — approximately 3 minutes on foot from Iseshi Station (JR/Kintetsu). Please arrive 15 minutes before your tour start time so you have time to browse the shop and settle in." },
-    { q: "What should I wear and bring?", a: "Comfortable walking shoes are essential — the total walking distance is 3–4 km. Dress for the weather, bring a small bag for any purchases on Oharaimachi, and carry some cash for street food and the local bus (~¥140 per person)." },
-    { q: "What happens if the group tour minimum isn't met?", a: "For group tours, we require a minimum of 4 participants to run the session. If the minimum hasn't been reached 48 hours before your tour, we will contact you with the option to upgrade to a private tour or receive a full refund." },
+    { q: "What language is the tour conducted in?", a: "The tour is fully conducted in English by our Private Licensed YamaTrips Guides." },
+    { q: "Where exactly is the meeting point?", a: "We meet at Real Japan by YamaTrips on Geku Sando — approximately 3 minutes on foot from Iseshi Station (JR/Kintetsu). Please arrive from 11:30 (group) so you have time to drop your luggage, slip on a samue, and settle in before the 12:00 meet & greet." },
+    { q: "How long is the tour?", a: "Approximately 4–5 hours. Group tours run from 12:00 (meet & greet) to 17:00 (close at the shop). Private tours can start any time between 10:00 and 14:00." },
+    { q: "What should I wear and bring?", a: "Comfortable walking shoes are essential — total walking distance is 3–4 km. Come hungry — the food crawl through Okage Yokochō replaces lunch. Carry some cash for street food and the bus (~¥520 per person between Gekū and Naikū)." },
+    { q: "How does pricing work?", a: "Group tour: ¥6,000 per person, mixed group up to 10, runs Mon · Wed · Fri. Private tour: ¥6,000 per person plus a ¥20,000 private surcharge for a dedicated group up to 10. Groups of 11+ receive the private upgrade free of charge — please email admin@yamatrips.com." },
+    { q: "How do I pay?", a: "Online advance payment via Stripe at the time of booking." },
     { q: "What is your cancellation policy?", a: "Full refunds are available for cancellations made more than 48 hours before the tour start time. Cancellations within 48 hours are non-refundable." },
     { q: "Is the tour suitable for children?", a: "Yes — children are very welcome. The route is gentle walking on paved and gravel paths." },
-    { q: "Can I book a tour for the same day?", a: "Same-day bookings are subject to availability. We recommend booking at least 24 hours in advance." },
+    { q: "Can I leave my luggage at the shop?", a: "Yes — drop your luggage at Real Japan by YamaTrips when you arrive. It will be safely stored at the shop while you walk." },
   ],
 
   contact: {
-    email: "contact@yamatrips.com",
+    email: "admin@yamatrips.com",
     meetingPoint: "Real Japan by YamaTrips",
-    meetingPointAddress: "Geku Sando, Ise-shi, Mie",
+    meetingPointAddress: "Geku Sando, Ise-shi, Mie · 3 min walk from Iseshi Station",
   },
 
   site: {
@@ -422,12 +435,12 @@ const DEFAULT_SETTINGS: Settings = {
   tours: [
     {
       slug: "ise-sacred-walk",
-      name: "Ise Sacred Walk",
+      name: "Ise Sacred Walk & Eat",
       kanji: "参道",
-      summary: "Three quiet hours through Gekū, Naikū, and the four-hundred-year-old streets of Oharaimachi.",
+      summary: "A 4–5 hour walking and eating tour through Gekū, Naikū, and the Edo-era streets of Okage Yokochō. Led by Private Licensed YamaTrips Guides.",
       heroImage: "/photos/24825820_m.jpeg",
-      durationLabel: "3 hours",
-      fromPriceJpy: 5000,
+      durationLabel: "4 – 5 hours",
+      fromPriceJpy: 6000,
       location: "Ise, Mie",
       active: true,
     },

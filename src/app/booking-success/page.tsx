@@ -34,9 +34,9 @@ export default function BookingSuccess({
             {[
               "📧 Confirmation email with all booking details",
               "📍 Meeting point: Real Japan by YamaTrips, Geku Sando (3 min from Iseshi Station)",
-              "⏰ Please arrive 5–10 minutes before your session start time",
-              "👟 Wear comfortable walking shoes for the 3–4 km journey",
-              "❓ Questions? Email us at contact@yamatrips.com",
+              "⏰ Please arrive 30 minutes early to drop your luggage and meet the team",
+              "👟 Wear comfortable walking shoes — 3–4 km of walking and eating, come hungry",
+              "❓ Questions? Email us at admin@yamatrips.com",
             ].map((t, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="leading-5">{t}</span>

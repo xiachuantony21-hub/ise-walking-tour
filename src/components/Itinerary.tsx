@@ -8,13 +8,13 @@ export default function Itinerary({ chapters, arriveEarly }: { chapters: Chapter
         <p className="section-kanji text-3xl mb-3">参道</p>
         <p className="section-label">The Sacred Route</p>
         <h2 className="font-serif text-5xl md:text-6xl leading-tight mb-6">
-          Five chapters<br />
+          The chapters<br />
           of one <em className="italic" style={{ color: "var(--accent)" }}>walk.</em>
         </h2>
         <span className="torii-line" />
         <p className="mt-8 text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-          Arrive {arriveEarly} minutes early to browse our shop before we begin — then three hours
-          on foot through Ise&apos;s two grand shrines and oldest pilgrim street.
+          Arrive {arriveEarly} minutes early to drop your luggage and meet the team — then 4–5 hours
+          walking and eating through Ise&apos;s two grand shrines and the Edo-era streets of Okage Yokochō.
         </p>
       </div>
 

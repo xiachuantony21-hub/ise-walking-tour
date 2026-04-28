@@ -24,9 +24,9 @@ const shippori = Shippori_Mincho({
 });
 
 export const metadata: Metadata = {
-  title: "Ise Sacred Walk · Real Japan by YamaTrips",
+  title: "Ise Sacred Walk & Eat · Real Japan by YamaTrips",
   description:
-    "A 3-hour guided walking tour from Geku Sando to Naiku — experience Japan's most sacred pilgrimage route with an expert local guide.",
+    "A 4–5 hour walking and eating tour through Gekū, Naikū, and the Edo-era streets of Okage Yokochō — led by Private Licensed YamaTrips Guides. Come hungry.",
   keywords: ["Ise", "Ise Jingu", "walking tour", "guided tour", "Japan", "YamaTrips", "Real Japan"],
   openGraph: {
     title: "Ise Sacred Walk · Real Japan by YamaTrips",
